@@ -1,5 +1,6 @@
 packages:
-    - 'apps/*'
-    - 'packages/*'
+  - 'apps/*'
+  - 'packages/*'
+strictDepBuilds: true
 allowBuilds:
-    unrs-resolver: false
+  '@scarf/scarf': false
