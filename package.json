@@ -1,26 +1,26 @@
 {
-  "name": "script-hub",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
-  },
-  "devDependencies": {
-    "prettier": "^3.4.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AzzMTZ/script-hub.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/AzzMTZ/script-hub/issues"
-  },
-  "homepage": "https://github.com/AzzMTZ/script-hub#readme"
+    "name": "script-hub",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "devDependencies": {
+        "prettier": "^3.4.2"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AzzMTZ/script-hub.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/AzzMTZ/script-hub/issues"
+    },
+    "homepage": "https://github.com/AzzMTZ/script-hub#readme"
 }
