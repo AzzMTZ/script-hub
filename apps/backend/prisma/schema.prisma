@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AuthProvider {
+  google
+}
+
+enum UserRole {
+  developer
+  runner
+}
+
+enum RunStatus {
+  pending
+  running
+  completed
+  failed
+}
+
+model User {
+  id             String       @id @default(uuid())
+  authProviderId String
+  authProvider   AuthProvider
+  name           String
+  role           UserRole
+  email          String
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  scripts        Script[]     @relation("ScriptCreator")
+  runs           Run[]        @relation("RunExecutor")
+}
+
+model Script {
+  id           String   @id @default(uuid())
+  creatorId    String
+  creator      User     @relation("ScriptCreator", fields: [creatorId], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  code         String
+  name         String
+  description  String
+  paramsSchema Json
+
+  runs         Run[]
+}
+
+model Run {
+  id         String    @id @default(uuid())
+  scriptId   String
+  script     Script    @relation(fields: [scriptId], references: [id])
+  params     Json
+  result     Json?
+  startedAt  DateTime  @default(now())
+  finishedAt DateTime?
+  status     RunStatus @default(pending)
+  executorId String
+  executor   User      @relation("RunExecutor", fields: [executorId], references: [id])
+}
+
