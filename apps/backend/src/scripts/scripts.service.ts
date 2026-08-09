@@ -1,37 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Script } from '../generated/prisma/client';
-
-type CreateScriptInput = {
-    creatorId: string;
-    code: string;
-    name: string;
-    description: string;
-    paramsSchema: Array<{
-        name: string;
-        type: string;
-    }>;
-};
+import type { CreateScriptDto } from '@script-hub/types';
 
 @Injectable()
 export class ScriptsService {
     constructor(private prisma: PrismaService) {}
 
-    async getScripts(): Promise<Script | null> {
+    getScript(id: string): Promise<Script | null> {
         return this.prisma.script.findUnique({
             where: {
-                id: 'some-id',
+                id,
             },
         });
     }
 
-    async createScript({
+    createScript({
         code,
         creatorId,
         description,
         name,
         paramsSchema,
-    }: CreateScriptInput): Promise<Script> {
+    }: CreateScriptDto): Promise<Script> {
         return this.prisma.script.create({
             data: {
                 code,

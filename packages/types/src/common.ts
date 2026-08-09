@@ -1,7 +1,18 @@
-type User = {
+export type CreateScriptDto = {
+    creatorId: string;
+    code: string;
+    name: string;
+    description: string;
+    paramsSchema: {
+        name: string;
+        type: string;
+    }[];
+};
+
+export type User = {
     id: string;
     authProviderId: string;
-    authProvider: 'google' | 'github' | 'twitter';
+    authProvider: 'google';
     name: string;
     role: 'developer' | 'runner';
     email: string;
@@ -9,25 +20,17 @@ type User = {
     updatedAt: Date;
 };
 
-type Script = {
+export type Script = CreateScriptDto & {
     id: string;
-    creatorId: string;
     createdAt: Date;
     updatedAt: Date;
-    code: string;
-    name: string;
-    description: string;
-    paramsSchema: Array<{
-        name: string;
-        type: string;
-    }>;
 };
 
-type Run = {
+export type Run = {
     id: string;
     scriptId: string;
-    params: Array<any>;
-    result: any;
+    params: unknown[];
+    result: unknown;
     startedAt: Date;
     finishedAt: Date;
     status: 'pending' | 'running' | 'completed' | 'failed';
