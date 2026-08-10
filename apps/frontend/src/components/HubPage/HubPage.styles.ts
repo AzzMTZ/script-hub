@@ -47,9 +47,11 @@ export const BrandStack = styled(Stack)(({ theme }) => ({
     gap: theme.spacing(1.5),
 }));
 
-export const BrandAvatar = styled(Avatar)({
-    background: 'linear-gradient(135deg, #4f46e5 0%, #0ea5e9 100%)',
-    fontWeight: 700,
+export const BrandLogo = styled('img')({
+    height: 100,
+    paddingTop: 15,
+    width: 'auto',
+    display: 'block',
 });
 
 export const UserStack = styled(Stack)(({ theme }) => ({
@@ -158,10 +160,15 @@ export const TimestampText = styled(Typography)({
 export const ActionButtonRoot = styled(IconButton, {
     shouldForwardProp: (prop) => prop !== 'variantColor',
 })<{ variantColor?: 'default' | 'primary' }>(({ theme, variantColor }) => ({
-    backgroundColor: variantColor === 'primary' ? theme.palette.primary.main : theme.palette.action.hover,
-    color: variantColor === 'primary' ? theme.palette.primary.contrastText : theme.palette.text.secondary,
+    backgroundColor:
+        variantColor === 'primary' ? theme.palette.primary.main : theme.palette.action.hover,
+    color:
+        variantColor === 'primary'
+            ? theme.palette.primary.contrastText
+            : theme.palette.text.secondary,
     '&:hover': {
-        backgroundColor: variantColor === 'primary' ? theme.palette.primary.dark : theme.palette.action.selected,
+        backgroundColor:
+            variantColor === 'primary' ? theme.palette.primary.dark : theme.palette.action.selected,
     },
 }));
 
