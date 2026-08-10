@@ -9,6 +9,21 @@ export type CreateScriptDto = {
     }[];
 };
 
+export type CreateUserDto = {
+    authProviderId: string;
+    authProvider: 'google';
+    name: string;
+    role: 'developer' | 'runner';
+    email: string;
+};
+
+export type CreateRunDto = {
+    scriptId: string;
+    params: Record<string, unknown>;
+    status?: 'pending' | 'running' | 'completed' | 'failed';
+    executorId: string;
+};
+
 export type User = {
     id: string;
     authProviderId: string;

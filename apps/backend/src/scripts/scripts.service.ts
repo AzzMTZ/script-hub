@@ -7,12 +7,16 @@ import type { CreateScriptDto } from '@script-hub/types';
 export class ScriptsService {
     constructor(private prisma: PrismaService) {}
 
-    getScript(id: string): Promise<Script | null> {
+    getScriptById(id: string): Promise<Script | null> {
         return this.prisma.script.findUnique({
             where: {
                 id,
             },
         });
+    }
+
+    getScripts(): Promise<Script[]> {
+        return this.prisma.script.findMany();
     }
 
     createScript({
@@ -28,6 +32,31 @@ export class ScriptsService {
                 creatorId,
                 name,
                 description,
+                paramsSchema,
+            },
+        });
+    }
+
+    deleteScript(id: string): Promise<Script> {
+        return this.prisma.script.delete({
+            where: {
+                id,
+            },
+        });
+    }
+
+    editScript(
+        id: string,
+        { code, description, name, paramsSchema }: CreateScriptDto,
+    ): Promise<Script> {
+        return this.prisma.script.update({
+            where: {
+                id,
+            },
+            data: {
+                code,
+                description,
+                name,
                 paramsSchema,
             },
         });

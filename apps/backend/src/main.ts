@@ -6,8 +6,8 @@ async function bootstrap() {
     const app = await NestFactory.create(AppModule);
 
     const config = new DocumentBuilder()
-        .setTitle('Script Hub API')
-        .setDescription('API documentation for the Script Hub backend')
+        .setTitle('ScriptHub API')
+        .setDescription('API documentation for the ScriptHub backend')
         .setVersion('1.0')
         .build();
     const documentFactory = () => SwaggerModule.createDocument(app, config);
