@@ -29,7 +29,6 @@ const RunRow = ({ run }: RunRowProps) => {
                     <Typography variant="subtitle2" noWrap>
                         &quot;{run.scriptId}&quot;
                         <Typography component="span" variant="body2" color="text.secondary">
-                            {' '}
                             &middot; run by {run.executorId}
                         </Typography>
                     </Typography>

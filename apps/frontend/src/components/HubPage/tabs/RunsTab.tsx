@@ -2,15 +2,18 @@ import { useState } from 'react';
 import { InputAdornment, Stack } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchField } from '../HubPage.styles';
-import { runs } from '../HubPage.consts';
 import RunRow from '../../UI/RunRow';
+import { useRunsQuery } from '../../../hooks/useRuns';
 
 const RunsTab = () => {
     const [search, setSearch] = useState('');
+    const runs = useRunsQuery().data ?? [];
+
     const query = search.toLowerCase();
     const filteredRuns = runs.filter(
         (run) =>
-            run.scriptId.toLowerCase().includes(query) || run.executorId.toLowerCase().includes(query),
+            run.scriptId.toLowerCase().includes(query) ||
+            run.executorId.toLowerCase().includes(query),
     );
 
     return (
