@@ -1,8 +1,9 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsObject, IsOptional, IsString } from 'class-validator';
 import { RunStatus } from '../../generated/prisma/client';
+import { CreateRunRequest } from '@script-hub/types';
 
-export class CreateRunDto {
+export class CreateRunDto implements CreateRunRequest {
     @ApiProperty()
     @IsString()
     scriptId!: string;

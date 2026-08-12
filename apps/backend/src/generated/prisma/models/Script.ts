@@ -32,6 +32,7 @@ export type ScriptMinAggregateOutputType = {
   code: string | null
   name: string | null
   description: string | null
+  resultType: string | null
 }
 
 export type ScriptMaxAggregateOutputType = {
@@ -42,6 +43,7 @@ export type ScriptMaxAggregateOutputType = {
   code: string | null
   name: string | null
   description: string | null
+  resultType: string | null
 }
 
 export type ScriptCountAggregateOutputType = {
@@ -53,6 +55,7 @@ export type ScriptCountAggregateOutputType = {
   name: number
   description: number
   paramsSchema: number
+  resultType: number
   _all: number
 }
 
@@ -65,6 +68,7 @@ export type ScriptMinAggregateInputType = {
   code?: true
   name?: true
   description?: true
+  resultType?: true
 }
 
 export type ScriptMaxAggregateInputType = {
@@ -75,6 +79,7 @@ export type ScriptMaxAggregateInputType = {
   code?: true
   name?: true
   description?: true
+  resultType?: true
 }
 
 export type ScriptCountAggregateInputType = {
@@ -86,6 +91,7 @@ export type ScriptCountAggregateInputType = {
   name?: true
   description?: true
   paramsSchema?: true
+  resultType?: true
   _all?: true
 }
 
@@ -170,6 +176,7 @@ export type ScriptGroupByOutputType = {
   name: string
   description: string
   paramsSchema: runtime.JsonValue
+  resultType: string | null
   _count: ScriptCountAggregateOutputType | null
   _min: ScriptMinAggregateOutputType | null
   _max: ScriptMaxAggregateOutputType | null
@@ -202,8 +209,10 @@ export type ScriptWhereInput = {
   name?: Prisma.StringFilter<"Script"> | string
   description?: Prisma.StringFilter<"Script"> | string
   paramsSchema?: Prisma.JsonFilter<"Script">
+  resultType?: Prisma.StringNullableFilter<"Script"> | string | null
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   runs?: Prisma.RunListRelationFilter
+  configDependencies?: Prisma.ScriptConfigItemDependencyListRelationFilter
 }
 
 export type ScriptOrderByWithRelationInput = {
@@ -215,8 +224,10 @@ export type ScriptOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   paramsSchema?: Prisma.SortOrder
+  resultType?: Prisma.SortOrderInput | Prisma.SortOrder
   creator?: Prisma.UserOrderByWithRelationInput
   runs?: Prisma.RunOrderByRelationAggregateInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyOrderByRelationAggregateInput
 }
 
 export type ScriptWhereUniqueInput = Prisma.AtLeast<{
@@ -231,8 +242,10 @@ export type ScriptWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Script"> | string
   description?: Prisma.StringFilter<"Script"> | string
   paramsSchema?: Prisma.JsonFilter<"Script">
+  resultType?: Prisma.StringNullableFilter<"Script"> | string | null
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   runs?: Prisma.RunListRelationFilter
+  configDependencies?: Prisma.ScriptConfigItemDependencyListRelationFilter
 }, "id">
 
 export type ScriptOrderByWithAggregationInput = {
@@ -244,6 +257,7 @@ export type ScriptOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   paramsSchema?: Prisma.SortOrder
+  resultType?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.ScriptCountOrderByAggregateInput
   _max?: Prisma.ScriptMaxOrderByAggregateInput
   _min?: Prisma.ScriptMinOrderByAggregateInput
@@ -261,6 +275,7 @@ export type ScriptScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Script"> | string
   description?: Prisma.StringWithAggregatesFilter<"Script"> | string
   paramsSchema?: Prisma.JsonWithAggregatesFilter<"Script">
+  resultType?: Prisma.StringNullableWithAggregatesFilter<"Script"> | string | null
 }
 
 export type ScriptCreateInput = {
@@ -271,8 +286,10 @@ export type ScriptCreateInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
   creator: Prisma.UserCreateNestedOneWithoutScriptsInput
   runs?: Prisma.RunCreateNestedManyWithoutScriptInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyCreateNestedManyWithoutScriptInput
 }
 
 export type ScriptUncheckedCreateInput = {
@@ -284,7 +301,9 @@ export type ScriptUncheckedCreateInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
   runs?: Prisma.RunUncheckedCreateNestedManyWithoutScriptInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyUncheckedCreateNestedManyWithoutScriptInput
 }
 
 export type ScriptUpdateInput = {
@@ -295,8 +314,10 @@ export type ScriptUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creator?: Prisma.UserUpdateOneRequiredWithoutScriptsNestedInput
   runs?: Prisma.RunUpdateManyWithoutScriptNestedInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyUpdateManyWithoutScriptNestedInput
 }
 
 export type ScriptUncheckedUpdateInput = {
@@ -308,7 +329,9 @@ export type ScriptUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   runs?: Prisma.RunUncheckedUpdateManyWithoutScriptNestedInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyUncheckedUpdateManyWithoutScriptNestedInput
 }
 
 export type ScriptCreateManyInput = {
@@ -320,6 +343,7 @@ export type ScriptCreateManyInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
 }
 
 export type ScriptUpdateManyMutationInput = {
@@ -330,6 +354,7 @@ export type ScriptUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ScriptUncheckedUpdateManyInput = {
@@ -341,6 +366,7 @@ export type ScriptUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type ScriptListRelationFilter = {
@@ -362,6 +388,7 @@ export type ScriptCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
   paramsSchema?: Prisma.SortOrder
+  resultType?: Prisma.SortOrder
 }
 
 export type ScriptMaxOrderByAggregateInput = {
@@ -372,6 +399,7 @@ export type ScriptMaxOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  resultType?: Prisma.SortOrder
 }
 
 export type ScriptMinOrderByAggregateInput = {
@@ -382,6 +410,7 @@ export type ScriptMinOrderByAggregateInput = {
   code?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  resultType?: Prisma.SortOrder
 }
 
 export type ScriptScalarRelationFilter = {
@@ -431,6 +460,24 @@ export type ScriptUncheckedUpdateManyWithoutCreatorNestedInput = {
   deleteMany?: Prisma.ScriptScalarWhereInput | Prisma.ScriptScalarWhereInput[]
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type ScriptCreateNestedOneWithoutConfigDependenciesInput = {
+  create?: Prisma.XOR<Prisma.ScriptCreateWithoutConfigDependenciesInput, Prisma.ScriptUncheckedCreateWithoutConfigDependenciesInput>
+  connectOrCreate?: Prisma.ScriptCreateOrConnectWithoutConfigDependenciesInput
+  connect?: Prisma.ScriptWhereUniqueInput
+}
+
+export type ScriptUpdateOneRequiredWithoutConfigDependenciesNestedInput = {
+  create?: Prisma.XOR<Prisma.ScriptCreateWithoutConfigDependenciesInput, Prisma.ScriptUncheckedCreateWithoutConfigDependenciesInput>
+  connectOrCreate?: Prisma.ScriptCreateOrConnectWithoutConfigDependenciesInput
+  upsert?: Prisma.ScriptUpsertWithoutConfigDependenciesInput
+  connect?: Prisma.ScriptWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ScriptUpdateToOneWithWhereWithoutConfigDependenciesInput, Prisma.ScriptUpdateWithoutConfigDependenciesInput>, Prisma.ScriptUncheckedUpdateWithoutConfigDependenciesInput>
+}
+
 export type ScriptCreateNestedOneWithoutRunsInput = {
   create?: Prisma.XOR<Prisma.ScriptCreateWithoutRunsInput, Prisma.ScriptUncheckedCreateWithoutRunsInput>
   connectOrCreate?: Prisma.ScriptCreateOrConnectWithoutRunsInput
@@ -453,7 +500,9 @@ export type ScriptCreateWithoutCreatorInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
   runs?: Prisma.RunCreateNestedManyWithoutScriptInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyCreateNestedManyWithoutScriptInput
 }
 
 export type ScriptUncheckedCreateWithoutCreatorInput = {
@@ -464,7 +513,9 @@ export type ScriptUncheckedCreateWithoutCreatorInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
   runs?: Prisma.RunUncheckedCreateNestedManyWithoutScriptInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyUncheckedCreateNestedManyWithoutScriptInput
 }
 
 export type ScriptCreateOrConnectWithoutCreatorInput = {
@@ -505,6 +556,75 @@ export type ScriptScalarWhereInput = {
   name?: Prisma.StringFilter<"Script"> | string
   description?: Prisma.StringFilter<"Script"> | string
   paramsSchema?: Prisma.JsonFilter<"Script">
+  resultType?: Prisma.StringNullableFilter<"Script"> | string | null
+}
+
+export type ScriptCreateWithoutConfigDependenciesInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  code: string
+  name: string
+  description: string
+  paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
+  creator: Prisma.UserCreateNestedOneWithoutScriptsInput
+  runs?: Prisma.RunCreateNestedManyWithoutScriptInput
+}
+
+export type ScriptUncheckedCreateWithoutConfigDependenciesInput = {
+  id?: string
+  creatorId: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  code: string
+  name: string
+  description: string
+  paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
+  runs?: Prisma.RunUncheckedCreateNestedManyWithoutScriptInput
+}
+
+export type ScriptCreateOrConnectWithoutConfigDependenciesInput = {
+  where: Prisma.ScriptWhereUniqueInput
+  create: Prisma.XOR<Prisma.ScriptCreateWithoutConfigDependenciesInput, Prisma.ScriptUncheckedCreateWithoutConfigDependenciesInput>
+}
+
+export type ScriptUpsertWithoutConfigDependenciesInput = {
+  update: Prisma.XOR<Prisma.ScriptUpdateWithoutConfigDependenciesInput, Prisma.ScriptUncheckedUpdateWithoutConfigDependenciesInput>
+  create: Prisma.XOR<Prisma.ScriptCreateWithoutConfigDependenciesInput, Prisma.ScriptUncheckedCreateWithoutConfigDependenciesInput>
+  where?: Prisma.ScriptWhereInput
+}
+
+export type ScriptUpdateToOneWithWhereWithoutConfigDependenciesInput = {
+  where?: Prisma.ScriptWhereInput
+  data: Prisma.XOR<Prisma.ScriptUpdateWithoutConfigDependenciesInput, Prisma.ScriptUncheckedUpdateWithoutConfigDependenciesInput>
+}
+
+export type ScriptUpdateWithoutConfigDependenciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  creator?: Prisma.UserUpdateOneRequiredWithoutScriptsNestedInput
+  runs?: Prisma.RunUpdateManyWithoutScriptNestedInput
+}
+
+export type ScriptUncheckedUpdateWithoutConfigDependenciesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  creatorId?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  code?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  runs?: Prisma.RunUncheckedUpdateManyWithoutScriptNestedInput
 }
 
 export type ScriptCreateWithoutRunsInput = {
@@ -515,7 +635,9 @@ export type ScriptCreateWithoutRunsInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
   creator: Prisma.UserCreateNestedOneWithoutScriptsInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyCreateNestedManyWithoutScriptInput
 }
 
 export type ScriptUncheckedCreateWithoutRunsInput = {
@@ -527,6 +649,8 @@ export type ScriptUncheckedCreateWithoutRunsInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
+  configDependencies?: Prisma.ScriptConfigItemDependencyUncheckedCreateNestedManyWithoutScriptInput
 }
 
 export type ScriptCreateOrConnectWithoutRunsInput = {
@@ -553,7 +677,9 @@ export type ScriptUpdateWithoutRunsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creator?: Prisma.UserUpdateOneRequiredWithoutScriptsNestedInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyUpdateManyWithoutScriptNestedInput
 }
 
 export type ScriptUncheckedUpdateWithoutRunsInput = {
@@ -565,6 +691,8 @@ export type ScriptUncheckedUpdateWithoutRunsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  configDependencies?: Prisma.ScriptConfigItemDependencyUncheckedUpdateManyWithoutScriptNestedInput
 }
 
 export type ScriptCreateManyCreatorInput = {
@@ -575,6 +703,7 @@ export type ScriptCreateManyCreatorInput = {
   name: string
   description: string
   paramsSchema: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: string | null
 }
 
 export type ScriptUpdateWithoutCreatorInput = {
@@ -585,7 +714,9 @@ export type ScriptUpdateWithoutCreatorInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   runs?: Prisma.RunUpdateManyWithoutScriptNestedInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyUpdateManyWithoutScriptNestedInput
 }
 
 export type ScriptUncheckedUpdateWithoutCreatorInput = {
@@ -596,7 +727,9 @@ export type ScriptUncheckedUpdateWithoutCreatorInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   runs?: Prisma.RunUncheckedUpdateManyWithoutScriptNestedInput
+  configDependencies?: Prisma.ScriptConfigItemDependencyUncheckedUpdateManyWithoutScriptNestedInput
 }
 
 export type ScriptUncheckedUpdateManyWithoutCreatorInput = {
@@ -607,6 +740,7 @@ export type ScriptUncheckedUpdateManyWithoutCreatorInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   paramsSchema?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  resultType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -616,10 +750,12 @@ export type ScriptUncheckedUpdateManyWithoutCreatorInput = {
 
 export type ScriptCountOutputType = {
   runs: number
+  configDependencies: number
 }
 
 export type ScriptCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   runs?: boolean | ScriptCountOutputTypeCountRunsArgs
+  configDependencies?: boolean | ScriptCountOutputTypeCountConfigDependenciesArgs
 }
 
 /**
@@ -639,6 +775,13 @@ export type ScriptCountOutputTypeCountRunsArgs<ExtArgs extends runtime.Types.Ext
   where?: Prisma.RunWhereInput
 }
 
+/**
+ * ScriptCountOutputType without action
+ */
+export type ScriptCountOutputTypeCountConfigDependenciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ScriptConfigItemDependencyWhereInput
+}
+
 
 export type ScriptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -649,8 +792,10 @@ export type ScriptSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name?: boolean
   description?: boolean
   paramsSchema?: boolean
+  resultType?: boolean
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   runs?: boolean | Prisma.Script$runsArgs<ExtArgs>
+  configDependencies?: boolean | Prisma.Script$configDependenciesArgs<ExtArgs>
   _count?: boolean | Prisma.ScriptCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["script"]>
 
@@ -663,6 +808,7 @@ export type ScriptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   name?: boolean
   description?: boolean
   paramsSchema?: boolean
+  resultType?: boolean
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["script"]>
 
@@ -675,6 +821,7 @@ export type ScriptSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   name?: boolean
   description?: boolean
   paramsSchema?: boolean
+  resultType?: boolean
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["script"]>
 
@@ -687,12 +834,14 @@ export type ScriptSelectScalar = {
   name?: boolean
   description?: boolean
   paramsSchema?: boolean
+  resultType?: boolean
 }
 
-export type ScriptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "creatorId" | "createdAt" | "updatedAt" | "code" | "name" | "description" | "paramsSchema", ExtArgs["result"]["script"]>
+export type ScriptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "creatorId" | "createdAt" | "updatedAt" | "code" | "name" | "description" | "paramsSchema" | "resultType", ExtArgs["result"]["script"]>
 export type ScriptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   creator?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   runs?: boolean | Prisma.Script$runsArgs<ExtArgs>
+  configDependencies?: boolean | Prisma.Script$configDependenciesArgs<ExtArgs>
   _count?: boolean | Prisma.ScriptCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ScriptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -707,6 +856,7 @@ export type $ScriptPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     creator: Prisma.$UserPayload<ExtArgs>
     runs: Prisma.$RunPayload<ExtArgs>[]
+    configDependencies: Prisma.$ScriptConfigItemDependencyPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -717,6 +867,7 @@ export type $ScriptPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     name: string
     description: string
     paramsSchema: runtime.JsonValue
+    resultType: string | null
   }, ExtArgs["result"]["script"]>
   composites: {}
 }
@@ -1113,6 +1264,7 @@ export interface Prisma__ScriptClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   creator<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   runs<T extends Prisma.Script$runsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Script$runsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  configDependencies<T extends Prisma.Script$configDependenciesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Script$configDependenciesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScriptConfigItemDependencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1150,6 +1302,7 @@ export interface ScriptFieldRefs {
   readonly name: Prisma.FieldRef<"Script", 'String'>
   readonly description: Prisma.FieldRef<"Script", 'String'>
   readonly paramsSchema: Prisma.FieldRef<"Script", 'Json'>
+  readonly resultType: Prisma.FieldRef<"Script", 'String'>
 }
     
 
@@ -1572,6 +1725,30 @@ export type Script$runsArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.RunScalarFieldEnum | Prisma.RunScalarFieldEnum[]
+}
+
+/**
+ * Script.configDependencies
+ */
+export type Script$configDependenciesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ScriptConfigItemDependency
+   */
+  select?: Prisma.ScriptConfigItemDependencySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ScriptConfigItemDependency
+   */
+  omit?: Prisma.ScriptConfigItemDependencyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ScriptConfigItemDependencyInclude<ExtArgs> | null
+  where?: Prisma.ScriptConfigItemDependencyWhereInput
+  orderBy?: Prisma.ScriptConfigItemDependencyOrderByWithRelationInput | Prisma.ScriptConfigItemDependencyOrderByWithRelationInput[]
+  cursor?: Prisma.ScriptConfigItemDependencyWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ScriptConfigItemDependencyScalarFieldEnum | Prisma.ScriptConfigItemDependencyScalarFieldEnum[]
 }
 
 /**

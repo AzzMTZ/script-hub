@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma, Run, RunStatus } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import type { CreateRunDto } from '@script-hub/types';
+import type { CreateRunRequest } from '@script-hub/types';
 
 @Injectable()
 export class RunsService {
@@ -19,7 +19,7 @@ export class RunsService {
         return this.prisma.run.findMany();
     }
 
-    createRun({ executorId, params, scriptId, status }: CreateRunDto): Promise<Run> {
+    createRun({ executorId, params, scriptId, status }: CreateRunRequest): Promise<Run> {
         return this.prisma.run.create({
             data: {
                 executorId,
@@ -38,7 +38,7 @@ export class RunsService {
         });
     }
 
-    editRun(id: string, { executorId, params, scriptId, status }: CreateRunDto): Promise<Run> {
+    editRun(id: string, { executorId, params, scriptId, status }: CreateRunRequest): Promise<Run> {
         return this.prisma.run.update({
             where: {
                 id,

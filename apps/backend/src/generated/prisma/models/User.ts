@@ -207,6 +207,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   scripts?: Prisma.ScriptListRelationFilter
+  configItems?: Prisma.ConfigItemListRelationFilter
   runs?: Prisma.RunListRelationFilter
 }
 
@@ -220,6 +221,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   scripts?: Prisma.ScriptOrderByRelationAggregateInput
+  configItems?: Prisma.ConfigItemOrderByRelationAggregateInput
   runs?: Prisma.RunOrderByRelationAggregateInput
 }
 
@@ -236,6 +238,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   scripts?: Prisma.ScriptListRelationFilter
+  configItems?: Prisma.ConfigItemListRelationFilter
   runs?: Prisma.RunListRelationFilter
 }, "id">
 
@@ -277,6 +280,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   scripts?: Prisma.ScriptCreateNestedManyWithoutCreatorInput
+  configItems?: Prisma.ConfigItemCreateNestedManyWithoutCreatorInput
   runs?: Prisma.RunCreateNestedManyWithoutExecutorInput
 }
 
@@ -290,6 +294,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   scripts?: Prisma.ScriptUncheckedCreateNestedManyWithoutCreatorInput
+  configItems?: Prisma.ConfigItemUncheckedCreateNestedManyWithoutCreatorInput
   runs?: Prisma.RunUncheckedCreateNestedManyWithoutExecutorInput
 }
 
@@ -303,6 +308,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   scripts?: Prisma.ScriptUpdateManyWithoutCreatorNestedInput
+  configItems?: Prisma.ConfigItemUpdateManyWithoutCreatorNestedInput
   runs?: Prisma.RunUpdateManyWithoutExecutorNestedInput
 }
 
@@ -316,6 +322,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   scripts?: Prisma.ScriptUncheckedUpdateManyWithoutCreatorNestedInput
+  configItems?: Prisma.ConfigItemUncheckedUpdateManyWithoutCreatorNestedInput
   runs?: Prisma.RunUncheckedUpdateManyWithoutExecutorNestedInput
 }
 
@@ -420,6 +427,20 @@ export type UserUpdateOneRequiredWithoutScriptsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutScriptsInput, Prisma.UserUpdateWithoutScriptsInput>, Prisma.UserUncheckedUpdateWithoutScriptsInput>
 }
 
+export type UserCreateNestedOneWithoutConfigItemsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConfigItemsInput, Prisma.UserUncheckedCreateWithoutConfigItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConfigItemsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutConfigItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutConfigItemsInput, Prisma.UserUncheckedCreateWithoutConfigItemsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutConfigItemsInput
+  upsert?: Prisma.UserUpsertWithoutConfigItemsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutConfigItemsInput, Prisma.UserUpdateWithoutConfigItemsInput>, Prisma.UserUncheckedUpdateWithoutConfigItemsInput>
+}
+
 export type UserCreateNestedOneWithoutRunsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutRunsInput, Prisma.UserUncheckedCreateWithoutRunsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutRunsInput
@@ -443,6 +464,7 @@ export type UserCreateWithoutScriptsInput = {
   email: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  configItems?: Prisma.ConfigItemCreateNestedManyWithoutCreatorInput
   runs?: Prisma.RunCreateNestedManyWithoutExecutorInput
 }
 
@@ -455,6 +477,7 @@ export type UserUncheckedCreateWithoutScriptsInput = {
   email: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  configItems?: Prisma.ConfigItemUncheckedCreateNestedManyWithoutCreatorInput
   runs?: Prisma.RunUncheckedCreateNestedManyWithoutExecutorInput
 }
 
@@ -483,6 +506,7 @@ export type UserUpdateWithoutScriptsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  configItems?: Prisma.ConfigItemUpdateManyWithoutCreatorNestedInput
   runs?: Prisma.RunUpdateManyWithoutExecutorNestedInput
 }
 
@@ -495,6 +519,75 @@ export type UserUncheckedUpdateWithoutScriptsInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  configItems?: Prisma.ConfigItemUncheckedUpdateManyWithoutCreatorNestedInput
+  runs?: Prisma.RunUncheckedUpdateManyWithoutExecutorNestedInput
+}
+
+export type UserCreateWithoutConfigItemsInput = {
+  id?: string
+  authProviderId: string
+  authProvider: $Enums.AuthProvider
+  name: string
+  role: $Enums.UserRole
+  email: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  scripts?: Prisma.ScriptCreateNestedManyWithoutCreatorInput
+  runs?: Prisma.RunCreateNestedManyWithoutExecutorInput
+}
+
+export type UserUncheckedCreateWithoutConfigItemsInput = {
+  id?: string
+  authProviderId: string
+  authProvider: $Enums.AuthProvider
+  name: string
+  role: $Enums.UserRole
+  email: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  scripts?: Prisma.ScriptUncheckedCreateNestedManyWithoutCreatorInput
+  runs?: Prisma.RunUncheckedCreateNestedManyWithoutExecutorInput
+}
+
+export type UserCreateOrConnectWithoutConfigItemsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutConfigItemsInput, Prisma.UserUncheckedCreateWithoutConfigItemsInput>
+}
+
+export type UserUpsertWithoutConfigItemsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutConfigItemsInput, Prisma.UserUncheckedUpdateWithoutConfigItemsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutConfigItemsInput, Prisma.UserUncheckedCreateWithoutConfigItemsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutConfigItemsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutConfigItemsInput, Prisma.UserUncheckedUpdateWithoutConfigItemsInput>
+}
+
+export type UserUpdateWithoutConfigItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authProviderId?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scripts?: Prisma.ScriptUpdateManyWithoutCreatorNestedInput
+  runs?: Prisma.RunUpdateManyWithoutExecutorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutConfigItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  authProviderId?: Prisma.StringFieldUpdateOperationsInput | string
+  authProvider?: Prisma.EnumAuthProviderFieldUpdateOperationsInput | $Enums.AuthProvider
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  scripts?: Prisma.ScriptUncheckedUpdateManyWithoutCreatorNestedInput
   runs?: Prisma.RunUncheckedUpdateManyWithoutExecutorNestedInput
 }
 
@@ -508,6 +601,7 @@ export type UserCreateWithoutRunsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   scripts?: Prisma.ScriptCreateNestedManyWithoutCreatorInput
+  configItems?: Prisma.ConfigItemCreateNestedManyWithoutCreatorInput
 }
 
 export type UserUncheckedCreateWithoutRunsInput = {
@@ -520,6 +614,7 @@ export type UserUncheckedCreateWithoutRunsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   scripts?: Prisma.ScriptUncheckedCreateNestedManyWithoutCreatorInput
+  configItems?: Prisma.ConfigItemUncheckedCreateNestedManyWithoutCreatorInput
 }
 
 export type UserCreateOrConnectWithoutRunsInput = {
@@ -548,6 +643,7 @@ export type UserUpdateWithoutRunsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   scripts?: Prisma.ScriptUpdateManyWithoutCreatorNestedInput
+  configItems?: Prisma.ConfigItemUpdateManyWithoutCreatorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRunsInput = {
@@ -560,6 +656,7 @@ export type UserUncheckedUpdateWithoutRunsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   scripts?: Prisma.ScriptUncheckedUpdateManyWithoutCreatorNestedInput
+  configItems?: Prisma.ConfigItemUncheckedUpdateManyWithoutCreatorNestedInput
 }
 
 
@@ -569,11 +666,13 @@ export type UserUncheckedUpdateWithoutRunsInput = {
 
 export type UserCountOutputType = {
   scripts: number
+  configItems: number
   runs: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   scripts?: boolean | UserCountOutputTypeCountScriptsArgs
+  configItems?: boolean | UserCountOutputTypeCountConfigItemsArgs
   runs?: boolean | UserCountOutputTypeCountRunsArgs
 }
 
@@ -597,6 +696,13 @@ export type UserCountOutputTypeCountScriptsArgs<ExtArgs extends runtime.Types.Ex
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountConfigItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ConfigItemWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountRunsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.RunWhereInput
 }
@@ -612,6 +718,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   scripts?: boolean | Prisma.User$scriptsArgs<ExtArgs>
+  configItems?: boolean | Prisma.User$configItemsArgs<ExtArgs>
   runs?: boolean | Prisma.User$runsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -652,6 +759,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "authProviderId" | "authProvider" | "name" | "role" | "email" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   scripts?: boolean | Prisma.User$scriptsArgs<ExtArgs>
+  configItems?: boolean | Prisma.User$configItemsArgs<ExtArgs>
   runs?: boolean | Prisma.User$runsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -662,6 +770,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     scripts: Prisma.$ScriptPayload<ExtArgs>[]
+    configItems: Prisma.$ConfigItemPayload<ExtArgs>[]
     runs: Prisma.$RunPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1068,6 +1177,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   scripts<T extends Prisma.User$scriptsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$scriptsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScriptPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  configItems<T extends Prisma.User$configItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$configItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ConfigItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   runs<T extends Prisma.User$runsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$runsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RunPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1520,6 +1630,30 @@ export type User$scriptsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.ScriptScalarFieldEnum | Prisma.ScriptScalarFieldEnum[]
+}
+
+/**
+ * User.configItems
+ */
+export type User$configItemsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ConfigItem
+   */
+  select?: Prisma.ConfigItemSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ConfigItem
+   */
+  omit?: Prisma.ConfigItemOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ConfigItemInclude<ExtArgs> | null
+  where?: Prisma.ConfigItemWhereInput
+  orderBy?: Prisma.ConfigItemOrderByWithRelationInput | Prisma.ConfigItemOrderByWithRelationInput[]
+  cursor?: Prisma.ConfigItemWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ConfigItemScalarFieldEnum | Prisma.ConfigItemScalarFieldEnum[]
 }
 
 /**

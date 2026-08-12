@@ -10,7 +10,7 @@ const RunsTab = () => {
     const query = search.toLowerCase();
     const filteredRuns = runs.filter(
         (run) =>
-            run.scriptName.toLowerCase().includes(query) || run.user.toLowerCase().includes(query),
+            run.scriptId.toLowerCase().includes(query) || run.executorId.toLowerCase().includes(query),
     );
 
     return (
@@ -32,7 +32,7 @@ const RunsTab = () => {
             />
             <Stack spacing={2}>
                 {filteredRuns.map((run) => (
-                    <RunRow key={run.id} run={run} />
+                    <RunRow key={`${run.id}`} run={run} />
                 ))}
             </Stack>
         </>

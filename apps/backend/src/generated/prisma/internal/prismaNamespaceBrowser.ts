@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Script: 'Script',
+  ConfigItem: 'ConfigItem',
+  ScriptConfigItemDependency: 'ScriptConfigItemDependency',
   Run: 'Run'
 } as const
 
@@ -94,10 +96,32 @@ export const ScriptScalarFieldEnum = {
   code: 'code',
   name: 'name',
   description: 'description',
-  paramsSchema: 'paramsSchema'
+  paramsSchema: 'paramsSchema',
+  resultType: 'resultType'
 } as const
 
 export type ScriptScalarFieldEnum = (typeof ScriptScalarFieldEnum)[keyof typeof ScriptScalarFieldEnum]
+
+
+export const ConfigItemScalarFieldEnum = {
+  id: 'id',
+  creatorId: 'creatorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ConfigItemScalarFieldEnum = (typeof ConfigItemScalarFieldEnum)[keyof typeof ConfigItemScalarFieldEnum]
+
+
+export const ScriptConfigItemDependencyScalarFieldEnum = {
+  scriptId: 'scriptId',
+  configItemId: 'configItemId'
+} as const
+
+export type ScriptConfigItemDependencyScalarFieldEnum = (typeof ScriptConfigItemDependencyScalarFieldEnum)[keyof typeof ScriptConfigItemDependencyScalarFieldEnum]
 
 
 export const RunScalarFieldEnum = {

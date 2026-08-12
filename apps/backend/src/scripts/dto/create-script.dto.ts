@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsOptional, IsString } from 'class-validator';
+import { ScriptParam, CreateScriptRequest } from '@script-hub/types';
 
-export class CreateScriptParamSchemaDto {
+export class CreateScriptParamSchemaDto implements ScriptParam {
     @ApiProperty()
     name!: string;
 
@@ -9,7 +10,7 @@ export class CreateScriptParamSchemaDto {
     type!: string;
 }
 
-export class CreateScriptDto {
+export class CreateScriptDto implements CreateScriptRequest {
     @ApiProperty()
     @IsString()
     creatorId!: string;
@@ -26,6 +27,14 @@ export class CreateScriptDto {
     @IsString()
     description!: string;
 
+    @ApiProperty()
+    @IsString()
+    resultType!: string;
+
     @ApiProperty({ type: CreateScriptParamSchemaDto, isArray: true })
     paramsSchema!: CreateScriptParamSchemaDto[];
+
+    @ApiProperty({ type: String, isArray: true, required: false })
+    @IsOptional()
+    importedConfigIds?: string[];
 }

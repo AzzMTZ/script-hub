@@ -50,6 +50,16 @@ export type User = Prisma.UserModel
  */
 export type Script = Prisma.ScriptModel
 /**
+ * Model ConfigItem
+ * 
+ */
+export type ConfigItem = Prisma.ConfigItemModel
+/**
+ * Model ScriptConfigItemDependency
+ * 
+ */
+export type ScriptConfigItemDependency = Prisma.ScriptConfigItemDependencyModel
+/**
  * Model Run
  * 
  */

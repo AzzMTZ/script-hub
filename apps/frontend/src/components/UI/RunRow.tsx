@@ -12,15 +12,10 @@ import {
     TimestampText,
 } from '../HubPage/HubPage.styles';
 import ActionButton from './ActionButton';
-
-interface RunRecord {
-    scriptName: string;
-    user: string;
-    timestamp: string;
-}
+import type { Run } from '@script-hub/types';
 
 interface RunRowProps {
-    run: RunRecord;
+    run: Run;
 }
 
 const RunRow = ({ run }: RunRowProps) => {
@@ -32,14 +27,14 @@ const RunRow = ({ run }: RunRowProps) => {
                 </RunAvatar>
                 <RunTextBox>
                     <Typography variant="subtitle2" noWrap>
-                        &quot;{run.scriptName}&quot;
+                        &quot;{run.scriptId}&quot;
                         <Typography component="span" variant="body2" color="text.secondary">
                             {' '}
-                            &middot; run by {run.user}
+                            &middot; run by {run.executorId}
                         </Typography>
                     </Typography>
                     <TimestampText variant="caption" color="text.secondary">
-                        {run.timestamp}
+                        {new Date(run.startedAt).toLocaleString()}
                     </TimestampText>
                 </RunTextBox>
                 <InlineActionsStack>

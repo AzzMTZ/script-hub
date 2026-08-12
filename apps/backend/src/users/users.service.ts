@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
-import type { CreateUserDto } from '@script-hub/types';
+import type { CreateUserRequest } from '@script-hub/types';
 
 @Injectable()
 export class UsersService {
@@ -19,7 +19,13 @@ export class UsersService {
         return this.prisma.user.findMany();
     }
 
-    createUser({ authProvider, authProviderId, email, name, role }: CreateUserDto): Promise<User> {
+    createUser({
+        authProvider,
+        authProviderId,
+        email,
+        name,
+        role,
+    }: CreateUserRequest): Promise<User> {
         return this.prisma.user.create({
             data: {
                 authProvider,
@@ -41,7 +47,7 @@ export class UsersService {
 
     editUser(
         id: string,
-        { authProvider, authProviderId, email, name, role }: CreateUserDto,
+        { authProvider, authProviderId, email, name, role }: CreateUserRequest,
     ): Promise<User> {
         return this.prisma.user.update({
             where: {

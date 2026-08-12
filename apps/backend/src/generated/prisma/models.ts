@@ -10,5 +10,7 @@
  */
 export type * from './models/User.js'
 export type * from './models/Script.js'
+export type * from './models/ConfigItem.js'
+export type * from './models/ScriptConfigItemDependency.js'
 export type * from './models/Run.js'
 export type * from './commonInputTypes.js'

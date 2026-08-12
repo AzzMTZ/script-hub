@@ -1,4 +1,5 @@
-import type { ConfigEntry, Run, Script, ScriptsTabKey } from './HubPage.types';
+import type { ConfigItem, Run } from '@script-hub/types';
+import type { ScriptsTabKey } from './HubPage.types';
 
 export const tabMeta: Record<ScriptsTabKey, { label: string; subtitle: string }> = {
     scripts: {
@@ -15,34 +16,65 @@ export const tabMeta: Record<ScriptsTabKey, { label: string; subtitle: string }>
     },
 };
 
-export const scripts: Script[] = [
-    { id: '1', name: 'Send Mail', description: 'A script that sends emails' },
-    { id: '2', name: 'Send Mail', description: 'A script that sends emails' },
-    { id: '3', name: 'Send Mail', description: 'A script that sends emails' },
-    { id: '4', name: 'Send Mail', description: 'A script that sends emails' },
-    { id: '5', name: 'Send Mail', description: 'A script that sends emails' },
-];
-
-export const configEntries: ConfigEntry[] = [
+export const configEntries: ConfigItem[] = [
     {
         id: '1',
         name: 'Gmail Suffix',
         description: 'A string containing the suffix of google mail addresses',
+        creatorId: '1',
+        code: 'string',
+        createdAt: new Date('2026-02-20T14:00:01'),
+        updatedAt: new Date('2026-02-20T14:00:01'),
     },
     {
         id: '2',
         name: 'Gmail Suffix',
         description: 'A string containing the suffix of google mail addresses',
+        creatorId: '1',
+        code: 'string',
+        createdAt: new Date('2026-02-20T14:00:01'),
+        updatedAt: new Date('2026-02-20T14:00:01'),
     },
     {
         id: '3',
         name: 'Gmail Suffix',
         description: 'A string containing the suffix of google mail addresses',
+        creatorId: '1',
+        code: 'string',
+        createdAt: new Date('2026-02-20T14:00:01'),
+        updatedAt: new Date('2026-02-20T14:00:01'),
     },
 ];
 
 export const runs: Run[] = [
-    { id: '1', scriptName: 'Send Mail', user: 'John Doe', timestamp: '20/02/2026, 14:00:01' },
-    { id: '2', scriptName: 'Send Mail', user: 'John Doe', timestamp: '20/02/2026, 14:00:01' },
-    { id: '3', scriptName: 'Send Mail', user: 'John Doe', timestamp: '20/02/2026, 14:00:01' },
+    {
+        id: '1',
+        scriptId: 'Send Mail',
+        executorId: 'John Doe',
+        startedAt: new Date('2026-02-20T14:00:01'),
+        params: [],
+        result: undefined,
+        status: 'pending',
+        finishedAt: undefined,
+    },
+    {
+        id: '2',
+        scriptId: 'Send Mail',
+        executorId: 'John Doe',
+        startedAt: new Date('2026-02-20T14:00:01'),
+        params: [],
+        result: undefined,
+        finishedAt: undefined,
+        status: 'pending',
+    },
+    {
+        id: '3',
+        scriptId: 'Send Mail',
+        executorId: 'John Doe',
+        startedAt: new Date('2026-02-20T14:00:01'),
+        params: [],
+        result: undefined,
+        finishedAt: undefined,
+        status: 'pending',
+    },
 ];

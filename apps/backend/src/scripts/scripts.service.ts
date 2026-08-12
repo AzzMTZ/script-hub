@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Script } from '../generated/prisma/client';
-import type { CreateScriptDto } from '@script-hub/types';
+import type { CreateScriptRequest } from '@script-hub/types';
 
 @Injectable()
 export class ScriptsService {
@@ -12,11 +12,26 @@ export class ScriptsService {
             where: {
                 id,
             },
+            include: {
+                configDependencies: {
+                    include: {
+                        configItem: true,
+                    },
+                },
+            },
         });
     }
 
     getScripts(): Promise<Script[]> {
-        return this.prisma.script.findMany();
+        return this.prisma.script.findMany({
+            include: {
+                configDependencies: {
+                    include: {
+                        configItem: true,
+                    },
+                },
+            },
+        });
     }
 
     createScript({
@@ -25,7 +40,9 @@ export class ScriptsService {
         description,
         name,
         paramsSchema,
-    }: CreateScriptDto): Promise<Script> {
+        resultType,
+        importedConfigIds,
+    }: CreateScriptRequest): Promise<Script> {
         return this.prisma.script.create({
             data: {
                 code,
@@ -33,6 +50,23 @@ export class ScriptsService {
                 name,
                 description,
                 paramsSchema,
+                resultType,
+                configDependencies: {
+                    create: importedConfigIds?.map((configItemId) => ({
+                        configItem: {
+                            connect: {
+                                id: configItemId,
+                            },
+                        },
+                    })),
+                },
+            },
+            include: {
+                configDependencies: {
+                    include: {
+                        configItem: true,
+                    },
+                },
             },
         });
     }
@@ -47,7 +81,7 @@ export class ScriptsService {
 
     editScript(
         id: string,
-        { code, description, name, paramsSchema }: CreateScriptDto,
+        { code, description, name, paramsSchema, importedConfigIds }: CreateScriptRequest,
     ): Promise<Script> {
         return this.prisma.script.update({
             where: {
@@ -58,6 +92,22 @@ export class ScriptsService {
                 description,
                 name,
                 paramsSchema,
+                configDependencies: {
+                    create: importedConfigIds?.map((configItemId) => ({
+                        configItem: {
+                            connect: {
+                                id: configItemId,
+                            },
+                        },
+                    })),
+                },
+            },
+            include: {
+                configDependencies: {
+                    include: {
+                        configItem: true,
+                    },
+                },
             },
         });
     }

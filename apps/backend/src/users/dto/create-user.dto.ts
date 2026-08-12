@@ -1,8 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsEnum, IsString } from 'class-validator';
 import { AuthProvider, UserRole } from '../../generated/prisma/client';
+import { CreateUserRequest } from '@script-hub/types';
 
-export class CreateUserDto {
+export class CreateUserDto implements CreateUserRequest {
     @ApiProperty()
     @IsString()
     authProviderId!: string;

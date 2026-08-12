@@ -399,6 +399,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Script: 'Script',
+  ConfigItem: 'ConfigItem',
+  ScriptConfigItemDependency: 'ScriptConfigItemDependency',
   Run: 'Run'
 } as const
 
@@ -415,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "script" | "run"
+    modelProps: "user" | "script" | "configItem" | "scriptConfigItemDependency" | "run"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -567,6 +569,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ConfigItem: {
+      payload: Prisma.$ConfigItemPayload<ExtArgs>
+      fields: Prisma.ConfigItemFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ConfigItemFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ConfigItemFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>
+        }
+        findFirst: {
+          args: Prisma.ConfigItemFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ConfigItemFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>
+        }
+        findMany: {
+          args: Prisma.ConfigItemFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>[]
+        }
+        create: {
+          args: Prisma.ConfigItemCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>
+        }
+        createMany: {
+          args: Prisma.ConfigItemCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ConfigItemCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>[]
+        }
+        delete: {
+          args: Prisma.ConfigItemDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>
+        }
+        update: {
+          args: Prisma.ConfigItemUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>
+        }
+        deleteMany: {
+          args: Prisma.ConfigItemDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ConfigItemUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ConfigItemUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>[]
+        }
+        upsert: {
+          args: Prisma.ConfigItemUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ConfigItemPayload>
+        }
+        aggregate: {
+          args: Prisma.ConfigItemAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateConfigItem>
+        }
+        groupBy: {
+          args: Prisma.ConfigItemGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConfigItemGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ConfigItemCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ConfigItemCountAggregateOutputType> | number
+        }
+      }
+    }
+    ScriptConfigItemDependency: {
+      payload: Prisma.$ScriptConfigItemDependencyPayload<ExtArgs>
+      fields: Prisma.ScriptConfigItemDependencyFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ScriptConfigItemDependencyFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ScriptConfigItemDependencyFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>
+        }
+        findFirst: {
+          args: Prisma.ScriptConfigItemDependencyFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ScriptConfigItemDependencyFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>
+        }
+        findMany: {
+          args: Prisma.ScriptConfigItemDependencyFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>[]
+        }
+        create: {
+          args: Prisma.ScriptConfigItemDependencyCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>
+        }
+        createMany: {
+          args: Prisma.ScriptConfigItemDependencyCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ScriptConfigItemDependencyCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>[]
+        }
+        delete: {
+          args: Prisma.ScriptConfigItemDependencyDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>
+        }
+        update: {
+          args: Prisma.ScriptConfigItemDependencyUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>
+        }
+        deleteMany: {
+          args: Prisma.ScriptConfigItemDependencyDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ScriptConfigItemDependencyUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ScriptConfigItemDependencyUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>[]
+        }
+        upsert: {
+          args: Prisma.ScriptConfigItemDependencyUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ScriptConfigItemDependencyPayload>
+        }
+        aggregate: {
+          args: Prisma.ScriptConfigItemDependencyAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateScriptConfigItemDependency>
+        }
+        groupBy: {
+          args: Prisma.ScriptConfigItemDependencyGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ScriptConfigItemDependencyGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ScriptConfigItemDependencyCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ScriptConfigItemDependencyCountAggregateOutputType> | number
+        }
+      }
+    }
     Run: {
       payload: Prisma.$RunPayload<ExtArgs>
       fields: Prisma.RunFieldRefs
@@ -702,10 +852,32 @@ export const ScriptScalarFieldEnum = {
   code: 'code',
   name: 'name',
   description: 'description',
-  paramsSchema: 'paramsSchema'
+  paramsSchema: 'paramsSchema',
+  resultType: 'resultType'
 } as const
 
 export type ScriptScalarFieldEnum = (typeof ScriptScalarFieldEnum)[keyof typeof ScriptScalarFieldEnum]
+
+
+export const ConfigItemScalarFieldEnum = {
+  id: 'id',
+  creatorId: 'creatorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  code: 'code',
+  name: 'name',
+  description: 'description'
+} as const
+
+export type ConfigItemScalarFieldEnum = (typeof ConfigItemScalarFieldEnum)[keyof typeof ConfigItemScalarFieldEnum]
+
+
+export const ScriptConfigItemDependencyScalarFieldEnum = {
+  scriptId: 'scriptId',
+  configItemId: 'configItemId'
+} as const
+
+export type ScriptConfigItemDependencyScalarFieldEnum = (typeof ScriptConfigItemDependencyScalarFieldEnum)[keyof typeof ScriptConfigItemDependencyScalarFieldEnum]
 
 
 export const RunScalarFieldEnum = {
@@ -1026,6 +1198,8 @@ export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaC
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   script?: Prisma.ScriptOmit
+  configItem?: Prisma.ConfigItemOmit
+  scriptConfigItemDependency?: Prisma.ScriptConfigItemDependencyOmit
   run?: Prisma.RunOmit
 }
 
