@@ -1,7 +1,5 @@
 import CloseIcon from '@mui/icons-material/Close';
 import {
-    Box,
-    Chip,
     Dialog,
     DialogContent,
     DialogTitle,
@@ -9,7 +7,6 @@ import {
     Table,
     TableBody,
     TableCell,
-    TableHead,
     TableRow,
     Typography,
 } from '@mui/material';
@@ -60,7 +57,13 @@ const renderValue = (value: ReactNode) => {
     return value ?? 'Not available';
 };
 
-const InfoDialog = ({ open, title, metadataRows = [], sections = [], onClose }: InfoDialogProps) => {
+const InfoDialog = ({
+    open,
+    title,
+    metadataRows = [],
+    sections = [],
+    onClose,
+}: InfoDialogProps) => {
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
             <DialogTitle

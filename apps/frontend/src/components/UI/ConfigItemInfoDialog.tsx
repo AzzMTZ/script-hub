@@ -1,4 +1,3 @@
-import { Typography } from '@mui/material';
 import InfoDialog from './InfoDialog';
 
 interface ConfigItemInfoDialogProps {
@@ -23,8 +22,8 @@ const ConfigItemInfoDialog = ({
             open={open}
             title={`${title} - Info`}
             metadataRows={[
-                { label: 'Created at', value: createdAt ?? 'Not available' },
-                { label: 'Updated at', value: updatedAt ?? 'Not available' },
+                { label: 'Created at', value: <>{createdAt ?? 'Not available'}</> },
+                { label: 'Updated at', value: <>{updatedAt ?? 'Not available'}</> },
                 { label: 'Description', value: description || 'No description provided' },
             ]}
             onClose={onClose}

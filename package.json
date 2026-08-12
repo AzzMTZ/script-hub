@@ -5,6 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "pnpm --recursive --if-present run lint",
+        "lint:fix": "pnpm --recursive --if-present run lint:fix",
         "format": "prettier --write .",
         "format:check": "prettier --check ."
     },

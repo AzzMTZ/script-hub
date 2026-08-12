@@ -1,4 +1,13 @@
-import { Box, Chip, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
+import {
+    Box,
+    Chip,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Typography,
+} from '@mui/material';
 import type { ScriptParam } from '@script-hub/types';
 import InfoDialog from './InfoDialog';
 
@@ -28,8 +37,14 @@ const ScriptInfoDialog = ({
             open={open}
             title={`${title} - Info`}
             metadataRows={[
-                { label: 'Created at', value: createdAt ? new Date(createdAt).toLocaleString() : 'Not available' },
-                { label: 'Updated at', value: updatedAt ? new Date(updatedAt).toLocaleString() : 'Not available' },
+                {
+                    label: 'Created at',
+                    value: createdAt ? new Date(createdAt).toLocaleString() : 'Not available',
+                },
+                {
+                    label: 'Updated at',
+                    value: updatedAt ? new Date(updatedAt).toLocaleString() : 'Not available',
+                },
             ]}
             sections={[
                 {
@@ -82,7 +97,11 @@ const ScriptInfoDialog = ({
                         ) : (
                             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                                 {importedConfigItemNames.map((configItemName) => (
-                                    <Chip key={configItemName} label={configItemName} size="small" />
+                                    <Chip
+                                        key={configItemName}
+                                        label={configItemName}
+                                        size="small"
+                                    />
                                 ))}
                             </Box>
                         ),

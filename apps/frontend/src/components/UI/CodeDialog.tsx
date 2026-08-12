@@ -12,7 +12,10 @@ interface CodeDialogProps {
 const CodeDialog = ({ open, title, code, onClose }: CodeDialogProps) => {
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
-            <DialogTitle component="div" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <DialogTitle
+                component="div"
+                sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+            >
                 {title} - Code
                 <IconButton aria-label="close code viewer" onClick={onClose} edge="end">
                     <CloseIcon />
