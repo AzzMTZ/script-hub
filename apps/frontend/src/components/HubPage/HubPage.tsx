@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, type MouseEvent } from 'react';
 import { Button, Tab, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
@@ -72,7 +72,9 @@ const HubPage = () => {
             <ColorModeFab
                 color="default"
                 aria-label={mode === 'light' ? 'switch to dark mode' : 'switch to light mode'}
-                onClick={toggleColorMode}
+                onClick={(event: MouseEvent<HTMLButtonElement>) =>
+                    toggleColorMode({ x: event.clientX, y: event.clientY })
+                }
             >
                 {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </ColorModeFab>

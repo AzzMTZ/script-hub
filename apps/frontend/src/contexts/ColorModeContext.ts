@@ -3,7 +3,7 @@ import type { PaletteMode } from '@mui/material';
 
 export type ColorModeContextValue = {
     mode: PaletteMode;
-    toggleColorMode: () => void;
+    toggleColorMode: (origin?: { x: number; y: number }) => void;
 };
 
 export const ColorModeContext = createContext<ColorModeContextValue>({
