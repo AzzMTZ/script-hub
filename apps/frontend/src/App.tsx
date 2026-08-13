@@ -3,6 +3,7 @@ import HubPage from './components/HubPage/HubPage';
 import ConfigTab from './components/HubPage/tabs/ConfigTab/ConfigTab';
 import RunsTab from './components/HubPage/tabs/RunsTab/RunsTab';
 import ScriptsTab from './components/HubPage/tabs/ScriptsTab/ScriptsTab';
+import { ConfigItemsProvider } from './providers/ConfigItemsProvider';
 import { ScriptsProvider } from './providers/ScriptsProvider';
 
 const App = () => {
@@ -14,13 +15,29 @@ const App = () => {
                     <Route
                         path="scripts"
                         element={
+                            <ConfigItemsProvider>
+                                <ScriptsProvider>
+                                    <ScriptsTab />
+                                </ScriptsProvider>
+                            </ConfigItemsProvider>
+                        }
+                    />
+                    <Route
+                        path="config"
+                        element={
+                            <ConfigItemsProvider>
+                                <ConfigTab />
+                            </ConfigItemsProvider>
+                        }
+                    />
+                    <Route
+                        path="runs"
+                        element={
                             <ScriptsProvider>
-                                <ScriptsTab />
+                                <RunsTab />
                             </ScriptsProvider>
                         }
                     />
-                    <Route path="config" element={<ConfigTab />} />
-                    <Route path="runs" element={<RunsTab />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/scripts" replace />} />
             </Routes>

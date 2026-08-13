@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { InputAdornment } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import ActionButton from '../../../UI/ActionButton/ActionButton';
 import CodeDialog from '../../../UI/CodeDialog';
 import EntryCard from '../../../UI/EntryCard/EntryCard';
-import { useConfigItemsQuery } from '../../../../hooks/useConfigItems';
+import { ConfigItemsContext } from '../../../../contexts/ConfigItemsContext';
 import ConfigItemInfoDialog from './ConfigItemInfoDialog';
 import { CardsGrid, SearchField } from './ConfigTab.styles';
 
@@ -14,7 +15,7 @@ const ConfigTab = () => {
     const [search, setSearch] = useState('');
     const [selectedConfigItemId, setSelectedConfigItemId] = useState<string | null>(null);
     const [infoConfigItemId, setInfoConfigItemId] = useState<string | null>(null);
-    const configItems = useConfigItemsQuery().data ?? [];
+    const { configItems } = useContext(ConfigItemsContext);
     const query = search.toLowerCase();
     const filteredConfigEntries = configItems.filter((entry) =>
         entry.name.toLowerCase().includes(query),
@@ -46,6 +47,7 @@ const ConfigTab = () => {
                         key={entry.id}
                         name={entry.name}
                         description={entry.description}
+                        icon={<SettingsSuggestIcon fontSize="small" />}
                         actions={
                             <>
                                 <ActionButton

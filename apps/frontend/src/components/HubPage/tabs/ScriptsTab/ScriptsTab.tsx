@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { ConfigItemsContext } from '../../../../contexts/ConfigItemsContext';
 import { InputAdornment } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -17,21 +18,24 @@ const ScriptsTab = () => {
     const [infoScriptId, setInfoScriptId] = useState<string | null>(null);
     const query = search.toLowerCase();
     const { scripts } = useContext(ScriptsContext);
+    const { configItems } = useContext(ConfigItemsContext);
+
     const filteredScripts = scripts.filter((script) => script.name.toLowerCase().includes(query));
     const selectedScript = scripts.find((script) => script.id === selectedScriptId) ?? null;
     const infoScript = scripts.find((script) => script.id === infoScriptId) ?? null;
     const infoScriptWithConfig = infoScript as
         | (typeof infoScript & {
               configDependencies?: Array<{
-                  configItem?: {
-                      name?: string | null;
-                  } | null;
+                  configItemId?: string | null;
               }>;
           })
         | null;
     const importedConfigItemNames =
         infoScriptWithConfig?.configDependencies
-            ?.map((dependency) => dependency.configItem?.name)
+            ?.map(
+                (dependency) =>
+                    configItems.find((item) => item.id === dependency.configItemId)?.name,
+            )
             .filter((name): name is string => Boolean(name)) ?? [];
 
     return (

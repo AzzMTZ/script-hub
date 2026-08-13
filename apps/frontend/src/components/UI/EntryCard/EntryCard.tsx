@@ -14,15 +14,16 @@ interface EntryCardProps {
     name: string;
     description: string;
     actions: ReactNode;
+    icon?: ReactNode;
 }
 
-const EntryCard = ({ name, description, actions }: EntryCardProps) => {
+const EntryCard = ({ name, description, actions, icon }: EntryCardProps) => {
     return (
         <StyledEntryCard variant="outlined">
             <EntryCardContent>
                 <EntryHeaderStack>
                     <EntryAvatar variant="rounded">
-                        <TerminalIcon fontSize="small" />
+                        {icon ?? <TerminalIcon fontSize="small" />}
                     </EntryAvatar>
                     <Typography variant="subtitle1" component="h3">
                         {name}
