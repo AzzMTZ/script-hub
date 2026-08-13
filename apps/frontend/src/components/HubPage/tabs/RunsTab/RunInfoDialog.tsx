@@ -14,10 +14,11 @@ interface RunInfoDialogProps {
     title: string;
     run: Run | null;
     scriptName?: string;
+    executorName?: string;
     onClose: () => void;
 }
 
-const RunInfoDialog = ({ open, title, run, scriptName, onClose }: RunInfoDialogProps) => {
+const RunInfoDialog = ({ open, title, run, scriptName, executorName, onClose }: RunInfoDialogProps) => {
     if (!run) {
         return null;
     }
@@ -31,7 +32,7 @@ const RunInfoDialog = ({ open, title, run, scriptName, onClose }: RunInfoDialogP
             metadataRows={[
                 { label: 'Script', value: scriptName ?? run.scriptId },
                 { label: 'Run ID', value: run.id },
-                { label: 'Executor', value: run.executorId },
+                { label: 'Executor', value: executorName ?? run.executorId },
                 { label: 'Status', value: run.status ?? 'pending' },
                 {
                     label: 'Started at',

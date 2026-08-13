@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Box, Chip, Typography } from '@mui/material';
 import { ScriptsContext } from '../../../../../contexts/ScriptsContext';
+import { UsersContext } from '../../../../../contexts/UsersContext';
 import HistoryIcon from '@mui/icons-material/History';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
@@ -32,7 +33,9 @@ const statusStyles = {
 
 const RunRow = ({ run, onInfoClick, onLogsClick }: RunRowProps) => {
     const { scripts } = useContext(ScriptsContext);
+    const { users } = useContext(UsersContext);
     const scriptName = scripts.find((script) => script.id === run.scriptId)?.name ?? run.scriptId;
+    const executorName = users.find((user) => user.id === run.executorId)?.name ?? run.executorId;
     const statusKey = run.status ?? 'pending';
     const status = statusStyles[statusKey] ?? statusStyles.pending;
 
@@ -47,7 +50,7 @@ const RunRow = ({ run, onInfoClick, onLogsClick }: RunRowProps) => {
                         <Typography variant="subtitle2" noWrap>
                             &quot;{scriptName}&quot;
                             <Typography component="span" variant="body2" color="text.secondary">
-                                &middot; run by {run.executorId}
+                                &middot; run by {executorName}
                             </Typography>
                         </Typography>
                         <Chip

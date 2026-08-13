@@ -21,9 +21,9 @@ export const RunCardContent = styled(CardContent)(({ theme }) => ({
 }));
 
 export const RunAvatar = styled(Avatar)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.main,
-    width: 40,
-    height: 40,
+    backgroundColor: theme.palette.primary.light,
+    width: 36,
+    height: 36,
 }));
 
 export const RunTextBox = styled(Box)({

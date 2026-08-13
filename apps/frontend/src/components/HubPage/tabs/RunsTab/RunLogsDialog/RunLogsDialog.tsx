@@ -9,10 +9,11 @@ interface RunLogsDialogProps {
     title: string;
     run: Run | null;
     scriptName?: string;
+    executorName?: string;
     onClose: () => void;
 }
 
-const RunLogsDialog = ({ open, title, run, scriptName, onClose }: RunLogsDialogProps) => {
+const RunLogsDialog = ({ open, title, run, scriptName, executorName, onClose }: RunLogsDialogProps) => {
     if (!run) {
         return null;
     }
@@ -29,7 +30,7 @@ const RunLogsDialog = ({ open, title, run, scriptName, onClose }: RunLogsDialogP
                 </IconButton>
             </DialogTitle>
             <DialogContent sx={{ height: '70vh', p: 0, borderTop: 1, borderColor: 'divider' }}>
-                <Terminal lines={buildDummyLogs(run, scriptName)} />
+                <Terminal lines={buildDummyLogs(run, scriptName, executorName)} />
             </DialogContent>
         </Dialog>
     );

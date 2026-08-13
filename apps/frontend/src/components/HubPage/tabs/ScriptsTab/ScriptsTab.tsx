@@ -11,6 +11,7 @@ import EntryCard from '../../../UI/EntryCard/EntryCard';
 import ScriptInfoDialog from './ScriptInfoDialog';
 import { CardsGrid, SearchField } from './ScriptsTab.styles';
 import { ScriptsContext } from '../../../../contexts/ScriptsContext';
+import { UsersContext } from '../../../../contexts/UsersContext';
 
 const ScriptsTab = () => {
     const [search, setSearch] = useState('');
@@ -19,10 +20,13 @@ const ScriptsTab = () => {
     const query = search.toLowerCase();
     const { scripts } = useContext(ScriptsContext);
     const { configItems } = useContext(ConfigItemsContext);
+    const { users } = useContext(UsersContext);
 
     const filteredScripts = scripts.filter((script) => script.name.toLowerCase().includes(query));
     const selectedScript = scripts.find((script) => script.id === selectedScriptId) ?? null;
     const infoScript = scripts.find((script) => script.id === infoScriptId) ?? null;
+    const infoScriptCreatorName =
+        users.find((user) => user.id === infoScript?.creatorId)?.name ?? infoScript?.creatorId;
     const infoScriptWithConfig = infoScript as
         | (typeof infoScript & {
               configDependencies?: Array<{
@@ -95,6 +99,7 @@ const ScriptsTab = () => {
                 params={infoScript?.paramsSchema ?? []}
                 resultType={infoScript?.resultType ?? 'void'}
                 importedConfigItemNames={importedConfigItemNames}
+                creatorName={infoScriptCreatorName}
                 createdAt={infoScript?.createdAt}
                 updatedAt={infoScript?.updatedAt}
                 onClose={() => setInfoScriptId(null)}

@@ -22,7 +22,7 @@ const EntryCard = ({ name, description, actions, icon }: EntryCardProps) => {
         <StyledEntryCard variant="outlined">
             <EntryCardContent>
                 <EntryHeaderStack>
-                    <EntryAvatar variant="rounded">
+                    <EntryAvatar variant="circular">
                         {icon ?? <TerminalIcon fontSize="small" />}
                     </EntryAvatar>
                     <Typography variant="subtitle1" component="h3">

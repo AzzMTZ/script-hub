@@ -8,6 +8,7 @@ import ActionButton from '../../../UI/ActionButton/ActionButton';
 import CodeDialog from '../../../UI/CodeDialog';
 import EntryCard from '../../../UI/EntryCard/EntryCard';
 import { ConfigItemsContext } from '../../../../contexts/ConfigItemsContext';
+import { UsersContext } from '../../../../contexts/UsersContext';
 import ConfigItemInfoDialog from './ConfigItemInfoDialog';
 import { CardsGrid, SearchField } from './ConfigTab.styles';
 
@@ -16,6 +17,7 @@ const ConfigTab = () => {
     const [selectedConfigItemId, setSelectedConfigItemId] = useState<string | null>(null);
     const [infoConfigItemId, setInfoConfigItemId] = useState<string | null>(null);
     const { configItems } = useContext(ConfigItemsContext);
+    const { users } = useContext(UsersContext);
     const query = search.toLowerCase();
     const filteredConfigEntries = configItems.filter((entry) =>
         entry.name.toLowerCase().includes(query),
@@ -23,6 +25,9 @@ const ConfigTab = () => {
     const selectedConfigItem =
         configItems.find((entry) => entry.id === selectedConfigItemId) ?? null;
     const infoConfigItem = configItems.find((entry) => entry.id === infoConfigItemId) ?? null;
+    const infoConfigItemCreatorName =
+        users.find((user) => user.id === infoConfigItem?.creatorId)?.name ??
+        infoConfigItem?.creatorId;
 
     return (
         <>
@@ -78,6 +83,7 @@ const ConfigTab = () => {
                 open={infoConfigItem !== null}
                 title={infoConfigItem?.name ?? ''}
                 description={infoConfigItem?.description ?? ''}
+                creatorName={infoConfigItemCreatorName}
                 createdAt={infoConfigItem?.createdAt}
                 updatedAt={infoConfigItem?.updatedAt}
                 onClose={() => setInfoConfigItemId(null)}

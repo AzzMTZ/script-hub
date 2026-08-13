@@ -17,6 +17,7 @@ interface ScriptInfoDialogProps {
     params: ScriptParam[];
     resultType: string;
     importedConfigItemNames?: string[];
+    creatorName?: string;
     createdAt?: Date;
     updatedAt?: Date;
     onClose: () => void;
@@ -28,6 +29,7 @@ const ScriptInfoDialog = ({
     params,
     resultType,
     importedConfigItemNames = [],
+    creatorName,
     createdAt,
     updatedAt,
     onClose,
@@ -37,6 +39,10 @@ const ScriptInfoDialog = ({
             open={open}
             title={`${title} - Info`}
             metadataRows={[
+                {
+                    label: 'Created by',
+                    value: creatorName ?? 'Not available',
+                },
                 {
                     label: 'Created at',
                     value: createdAt ? new Date(createdAt).toLocaleString() : 'Not available',

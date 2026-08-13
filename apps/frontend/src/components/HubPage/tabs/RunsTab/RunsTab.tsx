@@ -7,6 +7,7 @@ import RunLogsDialog from './RunLogsDialog/RunLogsDialog';
 import RunRow from './RunRow/RunRow';
 import { SearchField } from './RunsTab.styles';
 import { ScriptsContext } from '../../../../contexts/ScriptsContext';
+import { UsersContext } from '../../../../contexts/UsersContext';
 
 const RunsTab = () => {
     const [search, setSearch] = useState('');
@@ -14,17 +15,23 @@ const RunsTab = () => {
     const [selectedLogsRunId, setSelectedLogsRunId] = useState<string | null>(null);
     const runs = useRunsQuery().data ?? [];
     const { scripts } = useContext(ScriptsContext);
+    const { users } = useContext(UsersContext);
 
     const query = search.toLowerCase();
-    const filteredRuns = runs.filter(
-        (run) =>
-            run.scriptId.toLowerCase().includes(query) ||
-            run.executorId.toLowerCase().includes(query),
-    );
+    const filteredRuns = runs.filter((run) => {
+        const scriptName = scripts.find((script) => script.id === run.scriptId)?.name ?? run.scriptId;
+        const executorName = users.find((user) => user.id === run.executorId)?.name ?? run.executorId;
+
+        return (
+            scriptName.toLowerCase().includes(query) || executorName.toLowerCase().includes(query)
+        );
+    });
     const selectedRun = runs.find((run) => run.id === selectedRunId) ?? null;
     const selectedRunScriptName = scripts.find((script) => script.id === selectedRun?.scriptId)?.name ?? selectedRun?.scriptId;
+    const selectedRunExecutorName = users.find((user) => user.id === selectedRun?.executorId)?.name ?? selectedRun?.executorId;
     const selectedLogsRun = runs.find((run) => run.id === selectedLogsRunId) ?? null;
     const selectedLogsRunScriptName = scripts.find((script) => script.id === selectedLogsRun?.scriptId)?.name ?? selectedLogsRun?.scriptId;
+    const selectedLogsRunExecutorName = users.find((user) => user.id === selectedLogsRun?.executorId)?.name ?? selectedLogsRun?.executorId;
 
     return (
         <>
@@ -58,6 +65,7 @@ const RunsTab = () => {
                 title={`Run of '${selectedRunScriptName}'`}
                 run={selectedRun}
                 scriptName={selectedRunScriptName}
+                executorName={selectedRunExecutorName}
                 onClose={() => setSelectedRunId(null)}
             />
             <RunLogsDialog
@@ -65,6 +73,7 @@ const RunsTab = () => {
                 title={`Run of '${selectedLogsRunScriptName}'`}
                 run={selectedLogsRun}
                 scriptName={selectedLogsRunScriptName}
+                executorName={selectedLogsRunExecutorName}
                 onClose={() => setSelectedLogsRunId(null)}
             />
         </>

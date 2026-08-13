@@ -1,13 +1,13 @@
 import type { Run } from '@script-hub/types';
 
 // TODO: replace with real logs once a run logs API exists.
-export const buildDummyLogs = (run: Run, scriptName?: string): string[] => {
+export const buildDummyLogs = (run: Run, scriptName?: string, executorName?: string): string[] => {
     const startedAt = new Date(run.startedAt).toLocaleTimeString();
     const name = scriptName ?? run.scriptId;
 
     const lines = [
         `[${startedAt}] Starting run of "${name}"...`,
-        `[${startedAt}] Executor: ${run.executorId}`,
+        `[${startedAt}] Executor: ${executorName ?? run.executorId}`,
         `[${startedAt}] Resolving dependencies...`,
         `[${startedAt}] Dependencies resolved.`,
         `[${startedAt}] Executing script...`,
