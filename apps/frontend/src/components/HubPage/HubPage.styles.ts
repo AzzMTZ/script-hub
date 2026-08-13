@@ -35,7 +35,7 @@ export const BrandStack = styled(Stack)(({ theme }) => ({
 
 export const BrandLogo = styled('img')({
     height: 100,
-    paddingTop: 15,
+    paddingBlock: 10,
     width: 'auto',
     display: 'block',
 });
@@ -58,4 +58,10 @@ export const AddFab = styled(Fab)({
     position: 'fixed',
     bottom: 32,
     right: 32,
+});
+
+export const ColorModeFab = styled(Fab)({
+    position: 'fixed',
+    bottom: 32,
+    left: 32,
 });

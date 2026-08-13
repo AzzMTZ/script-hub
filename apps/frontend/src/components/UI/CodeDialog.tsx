@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import Editor from '@monaco-editor/react';
 import CloseIcon from '@mui/icons-material/Close';
 import { Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import { ColorModeContext } from '../../contexts/ColorModeContext';
 
 interface CodeDialogProps {
     open: boolean;
@@ -10,6 +12,8 @@ interface CodeDialogProps {
 }
 
 const CodeDialog = ({ open, title, code, onClose }: CodeDialogProps) => {
+    const { mode } = useContext(ColorModeContext);
+
     return (
         <Dialog open={open} onClose={onClose} fullWidth maxWidth="lg">
             <DialogTitle
@@ -26,6 +30,7 @@ const CodeDialog = ({ open, title, code, onClose }: CodeDialogProps) => {
                     height="100%"
                     defaultLanguage="javascript"
                     value={code}
+                    theme={mode === 'dark' ? 'vs-dark' : 'vs'}
                     options={{
                         automaticLayout: true,
                         minimap: { enabled: false },

@@ -1,11 +1,17 @@
+import { useContext } from 'react';
 import { Button, Tab, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Link as RouterLink, Outlet, useLocation } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import darkLogo from '../../assets/dark_logo.svg';
+import lightLogo from '../../assets/light_logo.svg';
+import { ColorModeContext } from '../../contexts/ColorModeContext';
 import {
     AddFab,
     BrandLogo,
     BrandStack,
+    ColorModeFab,
     HeaderToolbar,
     PageContainer,
     PageHeader,
@@ -20,6 +26,8 @@ import { tabs } from './HubPage.consts';
 
 const HubPage = () => {
     const { pathname } = useLocation();
+    const { mode, toggleColorMode } = useContext(ColorModeContext);
+    const logo = mode === 'dark' ? darkLogo : lightLogo;
     const activeTabIndex = tabs.findIndex((tab) => pathname.startsWith(tab.path));
     const activeTabKey = activeTabIndex === -1 ? 'scripts' : tabs[activeTabIndex].key;
     const activeMeta = tabMeta[activeTabKey];
@@ -60,6 +68,14 @@ const HubPage = () => {
             <AddFab color="primary" aria-label="add">
                 <AddIcon />
             </AddFab>
+
+            <ColorModeFab
+                color="default"
+                aria-label={mode === 'light' ? 'switch to dark mode' : 'switch to light mode'}
+                onClick={toggleColorMode}
+            >
+                {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
+            </ColorModeFab>
         </PageRoot>
     );
 };
