@@ -1,22 +1,22 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { InputAdornment } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SearchIcon from '@mui/icons-material/Search';
-import { useScriptsQuery } from '../../../../hooks/useScripts';
 import ActionButton from '../../../UI/ActionButton/ActionButton';
 import CodeDialog from '../../../UI/CodeDialog';
 import EntryCard from '../../../UI/EntryCard/EntryCard';
 import ScriptInfoDialog from './ScriptInfoDialog';
 import { CardsGrid, SearchField } from './ScriptsTab.styles';
+import { ScriptsContext } from '../../../../contexts/ScriptsContext';
 
 const ScriptsTab = () => {
     const [search, setSearch] = useState('');
     const [selectedScriptId, setSelectedScriptId] = useState<string | null>(null);
     const [infoScriptId, setInfoScriptId] = useState<string | null>(null);
     const query = search.toLowerCase();
-    const scripts = useScriptsQuery().data ?? [];
+    const { scripts } = useContext(ScriptsContext);
     const filteredScripts = scripts.filter((script) => script.name.toLowerCase().includes(query));
     const selectedScript = scripts.find((script) => script.id === selectedScriptId) ?? null;
     const infoScript = scripts.find((script) => script.id === infoScriptId) ?? null;
