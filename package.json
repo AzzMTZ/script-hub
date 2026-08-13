@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "dev": "concurrently --names \"backend,frontend\" \"pnpm --filter backend start:dev\" \"pnpm --filter frontend dev\"",
         "test": "echo \"Error: no test specified\" && exit 1",
         "lint": "pnpm --recursive --if-present run lint",
         "lint:fix": "pnpm --recursive --if-present run lint:fix",
@@ -11,6 +12,7 @@
         "format:check": "prettier --check ."
     },
     "devDependencies": {
+        "concurrently": "^9.1.2",
         "prettier": "^3.4.2"
     },
     "repository": {

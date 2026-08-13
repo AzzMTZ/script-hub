@@ -27,7 +27,7 @@ export class ScriptsService {
             include: {
                 configDependencies: {
                     include: {
-                        configItem: true,
+                        configItem: false,
                     },
                 },
             },
