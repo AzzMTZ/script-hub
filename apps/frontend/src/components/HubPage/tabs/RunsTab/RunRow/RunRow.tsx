@@ -3,6 +3,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import HistoryIcon from '@mui/icons-material/History';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+import ActionButton from '../../../../UI/ActionButton/ActionButton';
+import type { Run } from '@script-hub/types';
 import {
     InlineActionsStack,
     RunAvatar,
@@ -10,9 +12,7 @@ import {
     RunTextBox,
     StyledRunCard,
     TimestampText,
-} from '../HubPage/HubPage.styles';
-import ActionButton from './ActionButton';
-import type { Run } from '@script-hub/types';
+} from './RunRow.styles';
 
 interface RunRowProps {
     run: Run;

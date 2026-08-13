@@ -10,52 +10,16 @@ import {
     TableRow,
     Typography,
 } from '@mui/material';
-import type { ReactNode } from 'react';
+import type { MetadataRow, InfoSection } from './InfoDialog.types';
+import { renderValue } from './InfoDialog.utils';
 
-export type MetadataRow = {
-    label: string;
-    value: ReactNode;
-};
-
-export type InfoSection = {
-    title: string;
-    content: ReactNode;
-};
-
-interface InfoDialogProps {
+export interface InfoDialogProps {
     open: boolean;
     title: string;
     metadataRows?: MetadataRow[];
     sections?: InfoSection[];
     onClose: () => void;
 }
-
-const formatDateTime = (value?: Date | string | null) => {
-    if (!value) {
-        return 'Not available';
-    }
-
-    try {
-        const date = value instanceof Date ? value : new Date(value);
-        return new Intl.DateTimeFormat(undefined, {
-            dateStyle: 'medium',
-            timeStyle: 'short',
-        }).format(date);
-    } catch {
-        return 'Not available';
-    }
-};
-
-const renderValue = (value: ReactNode) => {
-    if (value instanceof Date || typeof value === 'string' || typeof value === 'number') {
-        const dateValue = value instanceof Date ? value : new Date(value);
-        if (!Number.isNaN(dateValue.getTime()) && typeof value !== 'number') {
-            return formatDateTime(dateValue);
-        }
-    }
-
-    return value ?? 'Not available';
-};
 
 const InfoDialog = ({
     open,

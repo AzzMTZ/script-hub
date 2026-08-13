@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { InputAdornment, Stack } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { SearchField } from '../HubPage.styles';
-import RunRow from '../../UI/RunRow';
-import { useRunsQuery } from '../../../hooks/useRuns';
+import { useRunsQuery } from '../../../../hooks/useRuns';
+import RunRow from './RunRow/RunRow';
+import { SearchField } from './RunsTab.styles';
 
 const RunsTab = () => {
     const [search, setSearch] = useState('');

@@ -3,12 +3,12 @@ import { InputAdornment } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SearchIcon from '@mui/icons-material/Search';
-import { CardsGrid, SearchField } from '../HubPage.styles';
-import ActionButton from '../../UI/ActionButton';
-import CodeDialog from '../../UI/CodeDialog';
-import ConfigItemInfoDialog from '../../UI/ConfigItemInfoDialog';
-import EntryCard from '../../UI/EntryCard';
-import { useConfigItemsQuery } from '../../../hooks/useConfigItems';
+import ActionButton from '../../../UI/ActionButton/ActionButton';
+import CodeDialog from '../../../UI/CodeDialog';
+import EntryCard from '../../../UI/EntryCard/EntryCard';
+import { useConfigItemsQuery } from '../../../../hooks/useConfigItems';
+import ConfigItemInfoDialog from './ConfigItemInfoDialog';
+import { CardsGrid, SearchField } from './ConfigTab.styles';
 
 const ConfigTab = () => {
     const [search, setSearch] = useState('');

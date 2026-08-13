@@ -16,13 +16,7 @@ import {
     UserStack,
 } from './HubPage.styles';
 import { tabMeta } from './HubPage.consts';
-import type { ScriptsTabKey } from './HubPage.types';
-
-const tabs: Array<{ key: ScriptsTabKey; path: string; label: string }> = [
-    { key: 'scripts', path: '/scripts', label: 'Scripts' },
-    { key: 'config', path: '/config', label: 'Config' },
-    { key: 'runs', path: '/runs', label: 'Runs' },
-];
+import { tabs } from './HubPage.consts';
 
 const HubPage = () => {
     const { pathname } = useLocation();

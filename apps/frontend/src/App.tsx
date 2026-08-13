@@ -1,8 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HubPage from './components/HubPage/HubPage';
-import ConfigTab from './components/HubPage/tabs/ConfigTab';
-import RunsTab from './components/HubPage/tabs/RunsTab';
-import ScriptsTab from './components/HubPage/tabs/ScriptsTab';
+import ConfigTab from './components/HubPage/tabs/ConfigTab/ConfigTab';
+import RunsTab from './components/HubPage/tabs/RunsTab/RunsTab';
+import ScriptsTab from './components/HubPage/tabs/ScriptsTab/ScriptsTab';
 
 const App = () => {
     return (

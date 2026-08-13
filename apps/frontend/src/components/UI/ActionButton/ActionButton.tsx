@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { ActionButtonRoot } from '../HubPage/HubPage.styles';
+import { ActionButtonRoot } from './ActionButton.styles';
 
 interface ActionButtonProps {
     label: string;

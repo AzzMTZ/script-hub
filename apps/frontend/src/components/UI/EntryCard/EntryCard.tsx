@@ -8,7 +8,7 @@ import {
     EntryCardContent,
     EntryHeaderStack,
     StyledEntryCard,
-} from '../HubPage/HubPage.styles';
+} from './EntryCard.styles';
 
 interface EntryCardProps {
     name: string;

@@ -1,4 +1,4 @@
-import InfoDialog from './InfoDialog';
+import InfoDialog from '../../../UI/InfoDialog/InfoDialog';
 
 interface ConfigItemInfoDialogProps {
     open: boolean;

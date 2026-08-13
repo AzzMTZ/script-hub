@@ -9,7 +9,7 @@ import {
     Typography,
 } from '@mui/material';
 import type { ScriptParam } from '@script-hub/types';
-import InfoDialog from './InfoDialog';
+import InfoDialog from '../../../UI/InfoDialog/InfoDialog';
 
 interface ScriptInfoDialogProps {
     open: boolean;
