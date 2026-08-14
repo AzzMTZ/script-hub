@@ -31,7 +31,7 @@ export type CreateUserRequest = {
 export type CreateRunRequest = {
     scriptId: string;
     params: Record<string, unknown>;
-    status?: 'pending' | 'running' | 'succeeded' | 'failed';
+    status?: 'pending' | 'running' | 'succeeded' | 'failed' | 'canceled';
     executorId: string;
 };
 

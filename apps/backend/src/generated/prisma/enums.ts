@@ -28,7 +28,8 @@ export const RunStatus = {
   pending: 'pending',
   running: 'running',
   succeeded: 'succeeded',
-  failed: 'failed'
+  failed: 'failed',
+  canceled: 'canceled'
 } as const
 
 export type RunStatus = (typeof RunStatus)[keyof typeof RunStatus]

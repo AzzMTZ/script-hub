@@ -30,6 +30,7 @@ const statusStyles = {
     running: { label: 'Running', color: 'info' as const },
     succeeded: { label: 'Succeeded', color: 'success' as const },
     failed: { label: 'Failed', color: 'error' as const },
+    canceled: { label: 'Canceled', color: 'default' as const },
 };
 
 const RunRow = ({ run, onInfoClick, onLogsClick }: RunRowProps) => {
@@ -71,10 +72,16 @@ const RunRow = ({ run, onInfoClick, onLogsClick }: RunRowProps) => {
                             color: 'text.secondary',
                         }}
                     >
-                        <TimestampText variant="caption">Started {new Date(run.startedAt).toLocaleString()}</TimestampText>
+                        <TimestampText variant="caption">
+                            Started {new Date(run.startedAt).toLocaleString()}
+                        </TimestampText>
                         {run.finishedAt && (
                             <>
-                                <Typography component="span" variant="caption" color="text.secondary">
+                                <Typography
+                                    component="span"
+                                    variant="caption"
+                                    color="text.secondary"
+                                >
                                     •
                                 </Typography>
                                 <TimestampText variant="caption">

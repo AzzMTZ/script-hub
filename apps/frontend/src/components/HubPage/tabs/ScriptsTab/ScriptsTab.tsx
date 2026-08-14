@@ -8,16 +8,19 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SearchIcon from '@mui/icons-material/Search';
 import ActionButton from '../../../UI/ActionButton/ActionButton';
 import CodeDialog from '../../../UI/CodeDialog';
+import EditToggleActions from '../../../UI/EditToggleActions/EditToggleActions';
 import EntryCard from '../../../UI/EntryCard/EntryCard';
 import ScriptInfoDialog from './ScriptInfoDialog';
 import { CardsGrid, SearchField } from './ScriptsTab.styles';
 import { ScriptsContext } from '../../../../contexts/ScriptsContext';
 import { UsersContext } from '../../../../contexts/UsersContext';
+import { useEditingIds } from '../../../../hooks/useEditingIds';
 
 const ScriptsTab = () => {
     const [search, setSearch] = useState('');
     const [selectedScriptId, setSelectedScriptId] = useState<string | null>(null);
     const [infoScriptId, setInfoScriptId] = useState<string | null>(null);
+    const { isEditing, startEditing, stopEditing } = useEditingIds();
     const query = search.toLowerCase();
     const { scripts } = useContext(ScriptsContext);
     const { configItems } = useContext(ConfigItemsContext);
@@ -61,40 +64,62 @@ const ScriptsTab = () => {
                 }}
             />
             <CardsGrid>
-                {filteredScripts.map((script) => (
-                    <EntryCard
-                        key={script.id}
-                        name={script.name}
-                        description={script.description}
-                        actions={
-                            <>
+                {filteredScripts.map((script) => {
+                    const editing = isEditing(script.id);
+
+                    return (
+                        <EntryCard
+                            key={script.id}
+                            name={script.name}
+                            description={script.description}
+                            editing={editing}
+                            deleteAction={
                                 <ActionButton
-                                    label="info"
-                                    onClick={() => setInfoScriptId(script.id)}
+                                    label="delete script"
+                                    sx={{ width: 28, height: 28, minHeight: 0 }}
                                 >
-                                    <InfoOutlinedIcon fontSize="small" />
+                                    <DeleteOutlineIcon sx={{ fontSize: 16 }} />
                                 </ActionButton>
-                                <ActionButton
-                                    label="view code"
-                                    onClick={() => setSelectedScriptId(script.id)}
-                                >
-                                    <CodeIcon fontSize="small" />
-                                </ActionButton>
-                                <ActionButton label="delete script">
-                                    <DeleteOutlineIcon fontSize="small" />
-                                </ActionButton>{' '}
-                                <ActionButton label="run script" color="primary">
-                                    <PlayArrowIcon fontSize="small" />
-                                </ActionButton>
-                            </>
-                        }
-                    />
-                ))}
+                            }
+                            actions={
+                                <>
+                                    <ActionButton
+                                        label="info"
+                                        onClick={() => setInfoScriptId(script.id)}
+                                    >
+                                        <InfoOutlinedIcon fontSize="small" />
+                                    </ActionButton>
+                                    <ActionButton
+                                        label="view code"
+                                        onClick={() => setSelectedScriptId(script.id)}
+                                    >
+                                        <CodeIcon fontSize="small" />
+                                    </ActionButton>
+                                    <EditToggleActions
+                                        isEditing={editing}
+                                        onEdit={() => startEditing(script.id)}
+                                        onSave={() => stopEditing(script.id)}
+                                        onDiscard={() => stopEditing(script.id)}
+                                    />
+                                    {!editing && (
+                                        <ActionButton label="run script" color="primary">
+                                            <PlayArrowIcon fontSize="small" />
+                                        </ActionButton>
+                                    )}
+                                </>
+                            }
+                        />
+                    );
+                })}
             </CardsGrid>
             <CodeDialog
                 open={selectedScript !== null}
                 title={selectedScript?.name ?? ''}
                 code={selectedScript?.code ?? ''}
+                availableObjects={[
+                    { name: 'params', description: 'Input parameters passed to this run' },
+                    { name: 'config', description: 'Values from imported config items' },
+                ]}
                 onClose={() => setSelectedScriptId(null)}
             />
             <ScriptInfoDialog

@@ -27,6 +27,7 @@ enum RunStatus {
   running
   succeeded
   failed
+  canceled
 }
 
 model User {

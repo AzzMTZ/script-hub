@@ -1,13 +1,37 @@
 import { Avatar, Card, CardContent, Stack, Typography } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 
-export const StyledEntryCard = styled(Card)(({ theme }) => ({
+export const StyledEntryCard = styled(Card, {
+    shouldForwardProp: (prop) => prop !== 'editing',
+})<{ editing?: boolean }>(({ theme, editing }) => ({
+    position: 'relative',
     width: 272,
-    borderColor: theme.palette.divider,
+    overflow: 'hidden',
+    borderColor: editing ? theme.palette.primary.main : theme.palette.divider,
+    backgroundColor: editing ? alpha(theme.palette.primary.main, 0.06) : undefined,
+    boxShadow: editing ? `0 0 0 2px ${alpha(theme.palette.primary.main, 0.3)}` : 'none',
     '&:hover': {
-        boxShadow: '0 12px 24px rgba(15, 23, 42, 0.08)',
-        borderColor: 'transparent',
+        boxShadow: editing
+            ? `0 0 0 2px ${alpha(theme.palette.primary.main, 0.3)}`
+            : '0 12px 24px rgba(15, 23, 42, 0.08)',
+        borderColor: editing ? theme.palette.primary.main : 'transparent',
     },
+}));
+
+export const EditingSideBar = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    width: 5,
+    backgroundColor: theme.palette.primary.main,
+}));
+
+export const DeleteActionSlot = styled('div')(({ theme }) => ({
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    zIndex: 1,
 }));
 
 export const EntryCardContent = styled(CardContent)(({ theme }) => ({
