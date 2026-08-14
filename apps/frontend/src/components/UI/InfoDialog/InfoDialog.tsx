@@ -45,7 +45,7 @@ const InfoDialog = ({
                         <Typography component="h3" variant="subtitle2" sx={{ mb: 1 }}>
                             General metadata
                         </Typography>
-                        <Table size="small">
+                        <Table size="small" sx={{ '& tr:last-child td': { border: 0 } }}>
                             <TableBody>
                                 {metadataRows.map(({ label, value }) => (
                                     <TableRow key={label}>
@@ -58,12 +58,25 @@ const InfoDialog = ({
                     </section>
                 )}
 
-                {sections.map(({ title, content }) => (
+                {sections.map(({ title, content, inline }) => (
                     <section key={title}>
-                        <Typography component="h3" variant="subtitle2" sx={{ mb: 1 }}>
-                            {title}
-                        </Typography>
-                        {content}
+                        {inline ? (
+                            <Typography
+                                component="h3"
+                                variant="subtitle2"
+                                sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
+                            >
+                                {title}
+                                {content}
+                            </Typography>
+                        ) : (
+                            <>
+                                <Typography component="h3" variant="subtitle2" sx={{ mb: 1 }}>
+                                    {title}
+                                </Typography>
+                                {content}
+                            </>
+                        )}
                     </section>
                 ))}
             </DialogContent>

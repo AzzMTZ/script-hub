@@ -1,11 +1,4 @@
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableRow,
-    Typography,
-} from '@mui/material';
+import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import InfoDialog from '../../../UI/InfoDialog/InfoDialog';
 import type { Run } from '@script-hub/types';
 
@@ -18,7 +11,14 @@ interface RunInfoDialogProps {
     onClose: () => void;
 }
 
-const RunInfoDialog = ({ open, title, run, scriptName, executorName, onClose }: RunInfoDialogProps) => {
+const RunInfoDialog = ({
+    open,
+    title,
+    run,
+    scriptName,
+    executorName,
+    onClose,
+}: RunInfoDialogProps) => {
     if (!run) {
         return null;
     }
@@ -34,16 +34,15 @@ const RunInfoDialog = ({ open, title, run, scriptName, executorName, onClose }: 
                 { label: 'Run ID', value: run.id },
                 { label: 'Executor', value: executorName ?? run.executorId },
                 { label: 'Status', value: run.status ?? 'pending' },
-                {
-                    label: 'Started at',
-                    value: new Date(run.startedAt).toLocaleString(),
-                },
+                { label: 'Started at', value: new Date(run.startedAt).toLocaleString() },
                 {
                     label: 'Finished at',
                     value: run.finishedAt
                         ? new Date(run.finishedAt).toLocaleString()
                         : 'Not finished yet',
                 },
+                { label: 'Created at', value: new Date(run.createdAt).toLocaleString() },
+                { label: 'Updated at', value: new Date(run.updatedAt).toLocaleString() },
             ]}
             sections={[
                 {
@@ -54,7 +53,11 @@ const RunInfoDialog = ({ open, title, run, scriptName, executorName, onClose }: 
                                 No parameters passed
                             </Typography>
                         ) : (
-                            <Table size="small" aria-label="run parameters table">
+                            <Table
+                                size="small"
+                                aria-label="run parameters table"
+                                sx={{ '& tr:last-child td': { border: 0 } }}
+                            >
                                 <TableHead>
                                     <TableRow>
                                         <TableCell>Name</TableCell>

@@ -8,4 +8,5 @@ export type MetadataRow = {
 export type InfoSection = {
     title: string;
     content: ReactNode;
+    inline?: boolean;
 };

@@ -56,7 +56,11 @@ const ScriptInfoDialog = ({
                 {
                     title: 'Input parameters',
                     content: (
-                        <Table aria-label="script input parameters" size="small">
+                        <Table
+                            aria-label="script input parameters"
+                            size="small"
+                            sx={{ '& tr:last-child td': { border: 0 } }}
+                        >
                             <TableHead>
                                 <TableRow>
                                     <TableCell>Name</TableCell>
@@ -81,16 +85,15 @@ const ScriptInfoDialog = ({
                     ),
                 },
                 {
-                    title: 'Result type',
+                    title: 'Result type:',
+                    inline: true,
                     content: (
-                        <Table aria-label="script return type" size="small">
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>Type</TableCell>
-                                    <TableCell>{resultType}</TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
+                        <Chip
+                            label={resultType}
+                            size="small"
+                            variant="outlined"
+                            sx={{ fontFamily: 'monospace' }}
+                        />
                     ),
                 },
                 {

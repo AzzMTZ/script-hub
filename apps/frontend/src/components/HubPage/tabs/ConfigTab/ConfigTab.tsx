@@ -104,7 +104,6 @@ const ConfigTab = () => {
             <ConfigItemInfoDialog
                 open={infoConfigItem !== null}
                 title={infoConfigItem?.name ?? ''}
-                description={infoConfigItem?.description ?? ''}
                 creatorName={infoConfigItemCreatorName}
                 createdAt={infoConfigItem?.createdAt}
                 updatedAt={infoConfigItem?.updatedAt}
