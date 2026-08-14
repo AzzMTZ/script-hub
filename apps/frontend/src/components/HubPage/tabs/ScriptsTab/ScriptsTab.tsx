@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { ConfigItemsContext } from '../../../../contexts/ConfigItemsContext';
 import { InputAdornment } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SearchIcon from '@mui/icons-material/Search';
@@ -79,6 +80,9 @@ const ScriptsTab = () => {
                                 >
                                     <CodeIcon fontSize="small" />
                                 </ActionButton>
+                                <ActionButton label="delete script">
+                                    <DeleteOutlineIcon fontSize="small" />
+                                </ActionButton>{' '}
                                 <ActionButton label="run script" color="primary">
                                     <PlayArrowIcon fontSize="small" />
                                 </ActionButton>

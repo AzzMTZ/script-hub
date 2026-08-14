@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Box, Chip, Typography } from '@mui/material';
 import { ScriptsContext } from '../../../../../contexts/ScriptsContext';
 import { UsersContext } from '../../../../../contexts/UsersContext';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutlined';
 import HistoryIcon from '@mui/icons-material/History';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
@@ -38,6 +39,7 @@ const RunRow = ({ run, onInfoClick, onLogsClick }: RunRowProps) => {
     const executorName = users.find((user) => user.id === run.executorId)?.name ?? run.executorId;
     const statusKey = run.status ?? 'pending';
     const status = statusStyles[statusKey] ?? statusStyles.pending;
+    const isFinished = statusKey === 'completed' || statusKey === 'failed';
 
     return (
         <StyledRunCard variant="outlined">
@@ -92,9 +94,15 @@ const RunRow = ({ run, onInfoClick, onLogsClick }: RunRowProps) => {
                     <ActionButton label="re-run">
                         <ReplayIcon fontSize="small" />
                     </ActionButton>
-                    <ActionButton label="stop run">
-                        <StopCircleIcon fontSize="small" />
-                    </ActionButton>
+                    {isFinished ? (
+                        <ActionButton label="delete run">
+                            <DeleteOutlineIcon fontSize="small" />
+                        </ActionButton>
+                    ) : (
+                        <ActionButton label="stop run">
+                            <StopCircleIcon fontSize="small" />
+                        </ActionButton>
+                    )}
                 </InlineActionsStack>
             </RunCardContent>
         </StyledRunCard>

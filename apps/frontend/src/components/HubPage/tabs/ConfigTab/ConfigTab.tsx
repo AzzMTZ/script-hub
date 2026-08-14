@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import { InputAdornment } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
@@ -63,10 +64,12 @@ const ConfigTab = () => {
                                 </ActionButton>
                                 <ActionButton
                                     label="view code"
-                                    color="primary"
                                     onClick={() => setSelectedConfigItemId(entry.id)}
                                 >
                                     <CodeIcon fontSize="small" />
+                                </ActionButton>
+                                <ActionButton label="delete config item">
+                                    <DeleteOutlineIcon fontSize="small" />
                                 </ActionButton>
                             </>
                         }
