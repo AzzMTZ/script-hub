@@ -25,7 +25,7 @@ enum UserRole {
 enum RunStatus {
   pending
   running
-  completed
+  succeeded
   failed
 }
 
@@ -88,6 +88,8 @@ model Run {
   script     Script    @relation(fields: [scriptId], references: [id])
   params     Json
   result     Json?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
   startedAt  DateTime  @default(now())
   finishedAt DateTime?
   status     RunStatus @default(pending)

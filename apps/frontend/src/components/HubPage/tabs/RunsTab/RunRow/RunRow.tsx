@@ -28,7 +28,7 @@ interface RunRowProps {
 const statusStyles = {
     pending: { label: 'Pending', color: 'warning' as const },
     running: { label: 'Running', color: 'info' as const },
-    completed: { label: 'Completed', color: 'success' as const },
+    succeeded: { label: 'Succeeded', color: 'success' as const },
     failed: { label: 'Failed', color: 'error' as const },
 };
 
@@ -39,7 +39,7 @@ const RunRow = ({ run, onInfoClick, onLogsClick }: RunRowProps) => {
     const executorName = users.find((user) => user.id === run.executorId)?.name ?? run.executorId;
     const statusKey = run.status ?? 'pending';
     const status = statusStyles[statusKey] ?? statusStyles.pending;
-    const isFinished = statusKey === 'completed' || statusKey === 'failed';
+    const isFinished = statusKey === 'succeeded' || statusKey === 'failed';
 
     return (
         <StyledRunCard variant="outlined">

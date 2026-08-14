@@ -31,7 +31,7 @@ export type CreateUserRequest = {
 export type CreateRunRequest = {
     scriptId: string;
     params: Record<string, unknown>;
-    status?: 'pending' | 'running' | 'completed' | 'failed';
+    status?: 'pending' | 'running' | 'succeeded' | 'failed';
     executorId: string;
 };
 
@@ -51,7 +51,7 @@ export type Script = CreateScriptRequest & SqlDoc;
 export type ConfigItem = CreateConfigItemRequest & SqlDoc;
 
 export type Run = CreateRunRequest &
-    IdDoc & {
+    SqlDoc & {
         result: unknown;
         startedAt: Date;
         finishedAt: Date;
