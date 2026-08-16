@@ -2,28 +2,34 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Script } from '../generated/prisma/client';
 import type { CreateScriptRequest } from '@script-hub/types';
+import {
+    ScriptWithConfigDependencies,
+    ScriptWithConfigDependenciesAndConfigItem,
+} from './scripts.types';
 
 @Injectable()
 export class ScriptsService {
     constructor(private prisma: PrismaService) {}
 
-    getScriptById(id: string): Promise<Script | null> {
-        return this.prisma.script.findUnique({
-            where: {
-                id,
-            },
-            include: {
-                configDependencies: {
-                    include: {
-                        configItem: true,
+    async getScriptById(id: string): Promise<ScriptWithConfigDependenciesAndConfigItem | null> {
+        const script: ScriptWithConfigDependenciesAndConfigItem | null =
+            await this.prisma.script.findUnique({
+                where: {
+                    id,
+                },
+                include: {
+                    configDependencies: {
+                        include: {
+                            configItem: true,
+                        },
                     },
                 },
-            },
-        });
+            });
+        return script;
     }
 
-    getScripts(): Promise<Script[]> {
-        return this.prisma.script.findMany({
+    async getScripts(): Promise<ScriptWithConfigDependencies[]> {
+        const scripts: ScriptWithConfigDependencies[] = await this.prisma.script.findMany({
             include: {
                 configDependencies: {
                     include: {
@@ -32,6 +38,8 @@ export class ScriptsService {
                 },
             },
         });
+
+        return scripts;
     }
 
     createScript({

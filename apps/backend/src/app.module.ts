@@ -7,6 +7,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { RunsModule } from './runs/runs.module';
 import { ScriptsModule } from './scripts/scripts.module';
 import { UsersModule } from './users/users.module';
+import { ExecutionModule } from './execution/execution.module';
 
 @Module({
     imports: [
@@ -16,6 +17,7 @@ import { UsersModule } from './users/users.module';
         ConfigItemsModule,
         UsersModule,
         RunsModule,
+        ExecutionModule,
     ],
     controllers: [AppController],
     providers: [AppService],

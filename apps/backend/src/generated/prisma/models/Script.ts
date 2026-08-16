@@ -232,6 +232,7 @@ export type ScriptOrderByWithRelationInput = {
 
 export type ScriptWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  name?: string
   AND?: Prisma.ScriptWhereInput | Prisma.ScriptWhereInput[]
   OR?: Prisma.ScriptWhereInput[]
   NOT?: Prisma.ScriptWhereInput | Prisma.ScriptWhereInput[]
@@ -239,14 +240,13 @@ export type ScriptWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Script"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Script"> | Date | string
   code?: Prisma.StringFilter<"Script"> | string
-  name?: Prisma.StringFilter<"Script"> | string
   description?: Prisma.StringFilter<"Script"> | string
   paramsSchema?: Prisma.JsonFilter<"Script">
   resultType?: Prisma.StringNullableFilter<"Script"> | string | null
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   runs?: Prisma.RunListRelationFilter
   configDependencies?: Prisma.ScriptConfigItemDependencyListRelationFilter
-}, "id">
+}, "id" | "name">
 
 export type ScriptOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

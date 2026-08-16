@@ -212,6 +212,7 @@ export type ConfigItemOrderByWithRelationInput = {
 
 export type ConfigItemWhereUniqueInput = Prisma.AtLeast<{
   id?: string
+  name?: string
   AND?: Prisma.ConfigItemWhereInput | Prisma.ConfigItemWhereInput[]
   OR?: Prisma.ConfigItemWhereInput[]
   NOT?: Prisma.ConfigItemWhereInput | Prisma.ConfigItemWhereInput[]
@@ -219,11 +220,10 @@ export type ConfigItemWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"ConfigItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ConfigItem"> | Date | string
   code?: Prisma.JsonFilter<"ConfigItem">
-  name?: Prisma.StringFilter<"ConfigItem"> | string
   description?: Prisma.StringFilter<"ConfigItem"> | string
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   scriptDependencies?: Prisma.ScriptConfigItemDependencyListRelationFilter
-}, "id">
+}, "id" | "name">
 
 export type ConfigItemOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

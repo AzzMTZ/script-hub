@@ -17,8 +17,11 @@ const RunsTab = () => {
     const { scripts } = useContext(ScriptsContext);
     const { users } = useContext(UsersContext);
 
+    const sortedRuns = [...runs].sort(
+        (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+    );
     const query = search.toLowerCase();
-    const filteredRuns = runs.filter((run) => {
+    const filteredRuns = sortedRuns.filter((run) => {
         const scriptName = scripts.find((script) => script.id === run.scriptId)?.name ?? run.scriptId;
         const executorName = users.find((user) => user.id === run.executorId)?.name ?? run.executorId;
 

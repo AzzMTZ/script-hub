@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, Headers } from '@nestjs/common';
 import { ApiBody } from '@nestjs/swagger';
 import { ScriptsService } from './scripts.service';
 import { Script } from '../generated/prisma/client';

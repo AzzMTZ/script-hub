@@ -38,6 +38,18 @@ export class RunsService {
         });
     }
 
+    updateRunStatus(id: string, status: RunStatus): Promise<Run> {
+        return this.prisma.run.update({
+            where: {
+                id,
+            },
+            data: {
+                status,
+                updatedAt: new Date(),
+            },
+        });
+    }
+
     editRun(id: string, { executorId, params, scriptId, status }: CreateRunRequest): Promise<Run> {
         return this.prisma.run.update({
             where: {

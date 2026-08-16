@@ -52,7 +52,7 @@ model Script {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   code         String
-  name         String
+  name         String @unique
   description  String
   paramsSchema Json
   resultType   String?
@@ -68,7 +68,7 @@ model ConfigItem {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   code        Json
-  name        String
+  name        String @unique
   description String
 
   scriptDependencies ScriptConfigItemDependency[]

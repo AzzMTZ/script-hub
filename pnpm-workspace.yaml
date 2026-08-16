@@ -1,8 +1,13 @@
 packages:
     - 'apps/*'
     - 'packages/*'
+
 strictDepBuilds: true
+
 allowBuilds:
     '@prisma/engines': false
     '@scarf/scarf': false
+    cpu-features: false
     prisma: false
+    protobufjs: false
+    ssh2: false
