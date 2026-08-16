@@ -30,8 +30,8 @@ export class DockerService {
         runDirectory: string,
         fileName: string,
         timeoutMs: number,
-        onOutput: (line: string) => void,
-        onError: (line: string) => void,
+        onOutput: (message: string) => void,
+        onError: (message: string) => void,
     ): Promise<boolean> {
         let container: Docker.Container | undefined;
         try {
@@ -101,8 +101,8 @@ export class DockerService {
 
     private async attachOutput(
         container: Docker.Container,
-        onOutput: (line: string) => void,
-        onError: (line: string) => void,
+        onOutput: (message: string) => void,
+        onError: (message: string) => void,
     ): Promise<void> {
         const stream = await container.attach({ stream: true, stdout: true, stderr: true });
 
@@ -110,12 +110,12 @@ export class DockerService {
         const stderr = new PassThrough();
 
         stdout.on('data', (chunk: Buffer) => {
-            const line = chunk.toString().trimEnd();
-            onOutput(line);
+            const message = chunk.toString().trimEnd();
+            onOutput(message);
         });
         stderr.on('data', (chunk: Buffer) => {
-            const line = chunk.toString().trimEnd();
-            onError(line);
+            const message = chunk.toString().trimEnd();
+            onError(message);
         });
 
         const modem = container.modem as {

@@ -3,6 +3,7 @@ import { ApiBody } from '@nestjs/swagger';
 import { Run } from '../generated/prisma/client';
 import { RunsService } from './runs.service';
 import { CreateRunDto } from './dto/create-run.dto';
+import { RunLogEntry } from './runs.types';
 
 @Controller('runs')
 export class RunsController {
@@ -11,6 +12,11 @@ export class RunsController {
     @Get(':id')
     getRunById(@Param('id') id: string): Promise<Run | null> {
         return this.runsService.getRunById(id);
+    }
+
+    @Get(':id/logs')
+    getRunLogs(@Param('id') id: string): Promise<RunLogEntry[]> {
+        return this.runsService.readRunLogs(id);
     }
 
     @Get()

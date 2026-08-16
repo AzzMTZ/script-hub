@@ -33,11 +33,12 @@ export class ExecutionService {
                 runDirectory,
                 SCRIPT_FILE_NAME,
                 CONTAINER_TIMEOUT_MS,
-                (line: string) => console.log(line),
-                (line: string) => console.error(line),
+                (message: string) => this.runsService.writeRunLog(run.id, 'stdout', message),
+                (message: string) => this.runsService.writeRunLog(run.id, 'stderr', message),
             );
         } catch (error) {
-            console.error(`[run ${run.id}] execution error:`, error);
+            const message = error instanceof Error ? error.message : 'Execution failed';
+            this.runsService.writeRunLog(run.id, 'stderr', message);
         }
 
         await this.runsService.updateRunStatus(run.id, isSuccess ? 'succeeded' : 'failed');
