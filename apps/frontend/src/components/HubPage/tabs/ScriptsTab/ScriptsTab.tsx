@@ -31,15 +31,9 @@ const ScriptsTab = () => {
     const infoScript = scripts.find((script) => script.id === infoScriptId) ?? null;
     const infoScriptCreatorName =
         users.find((user) => user.id === infoScript?.creatorId)?.name ?? infoScript?.creatorId;
-    const infoScriptWithConfig = infoScript as
-        | (typeof infoScript & {
-              configDependencies?: Array<{
-                  configItemId?: string | null;
-              }>;
-          })
-        | null;
+
     const importedConfigItemNames =
-        infoScriptWithConfig?.configDependencies
+        infoScript?.configDependencies
             ?.map(
                 (dependency) =>
                     configItems.find((item) => item.id === dependency.configItemId)?.name,

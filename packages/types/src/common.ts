@@ -46,7 +46,14 @@ export type SqlDoc = IdDoc & {
 
 export type User = CreateUserRequest & SqlDoc;
 
-export type Script = CreateScriptRequest & SqlDoc;
+export type Script = CreateScriptRequest &
+    SqlDoc & {
+        configDependencies: {
+            scriptId: string;
+            configItemId: string;
+            configItem?: ConfigItem;
+        }[];
+    };
 
 export type ConfigItem = CreateConfigItemRequest & SqlDoc;
 
