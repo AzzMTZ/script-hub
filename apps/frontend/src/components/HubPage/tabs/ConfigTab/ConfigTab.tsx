@@ -98,6 +98,7 @@ const ConfigTab = () => {
             <CodeDialog
                 open={selectedConfigItem !== null}
                 title={selectedConfigItem?.name ?? ''}
+                language="json"
                 code={JSON.stringify(selectedConfigItem?.code ?? '', null, 2)}
                 onClose={() => setSelectedConfigItemId(null)}
             />

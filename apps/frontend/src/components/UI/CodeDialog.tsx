@@ -22,11 +22,19 @@ interface CodeDialogProps {
     open: boolean;
     title: string;
     code: string;
+    language?: string;
     availableObjects?: AvailableObject[];
     onClose: () => void;
 }
 
-const CodeDialog = ({ open, title, code, availableObjects = [], onClose }: CodeDialogProps) => {
+const CodeDialog = ({
+    open,
+    title,
+    code,
+    language = 'javascript',
+    availableObjects = [],
+    onClose,
+}: CodeDialogProps) => {
     const { mode } = useContext(ColorModeContext);
 
     return (
@@ -66,7 +74,8 @@ const CodeDialog = ({ open, title, code, availableObjects = [], onClose }: CodeD
             <DialogContent dividers sx={{ height: '70vh', p: 0 }}>
                 <Editor
                     height="100%"
-                    defaultLanguage="javascript"
+                    language={language}
+                    defaultLanguage={language}
                     value={code}
                     theme={mode === 'dark' ? 'vs-dark' : 'vs'}
                     options={{
