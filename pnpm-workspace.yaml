@@ -1,5 +1,13 @@
 packages:
-  - "apps/*"
-  - "packages/*"
+    - 'apps/*'
+    - 'packages/*'
+
+strictDepBuilds: true
+
 allowBuilds:
-  unrs-resolver: false
+    '@prisma/engines': false
+    '@scarf/scarf': false
+    cpu-features: false
+    prisma: false
+    protobufjs: false
+    ssh2: false
