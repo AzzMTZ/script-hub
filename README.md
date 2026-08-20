@@ -36,11 +36,21 @@ pnpm install
 docker compose up -d
 ```
 
-The backend expects a `DATABASE_URL` in `apps/backend/.env`, pointing at the database started above:
+The backend expects a few environment variables in `apps/backend/.env` - see `apps/backend/.env.example` for the full list:
 
 ```
 DATABASE_URL="postgresql://scripthub:scripthub@localhost:5432/scripthub?schema=public"
+FRONTEND_URL="http://localhost:5173"
+GOOGLE_CLIENT_ID=""
+GOOGLE_CLIENT_SECRET=""
+GOOGLE_CALLBACK_URL="http://localhost:3000/auth/google/callback"
+JWT_SECRET=""
 ```
+
+`GOOGLE_CLIENT_ID`/`GOOGLE_CLIENT_SECRET` come from an OAuth 2.0 Client ID created in the
+[Google Cloud Console](https://console.cloud.google.com/apis/credentials); add
+`GOOGLE_CALLBACK_URL`'s value as an authorized redirect URI on that client. `JWT_SECRET` signs
+session cookies - generate one with `openssl rand -hex 32`.
 
 Apply the Prisma schema:
 
@@ -60,12 +70,22 @@ This starts the backend (`start:dev`) and frontend (`dev`) concurrently.
 
 Run from the repo root:
 
-| Command | Description |
-| --- | --- |
-| `pnpm dev` | Run backend and frontend together |
-| `pnpm lint` | Lint all packages |
-| `pnpm lint:fix` | Lint and autofix all packages |
-| `pnpm format` | Format the repo with Prettier |
-| `pnpm format:check` | Check formatting without writing |
+| Command             | Description                       |
+| ------------------- | --------------------------------- |
+| `pnpm dev`          | Run backend and frontend together |
+| `pnpm lint`         | Lint all packages                 |
+| `pnpm lint:fix`     | Lint and autofix all packages     |
+| `pnpm format`       | Format the repo with Prettier     |
+| `pnpm format:check` | Check formatting without writing  |
 
 Each app also has its own scripts — see `apps/backend/package.json` and `apps/frontend/package.json` (e.g. `pnpm --filter backend test`, `pnpm --filter frontend build`).
+
+## Authentication
+
+Users sign in with Google. `GET /auth/google` redirects to Google's consent screen; on
+success `GET /auth/google/callback` exchanges the authorization code, finds or creates the
+matching `User` (defaulting new users to the `runner` role), and sets an httpOnly session
+cookie before redirecting back to the frontend. `GET /auth/me` returns the current user, and
+`POST /auth/logout` clears the cookie. All other routes require a valid session by default;
+mark a route `@Public()` (see `apps/backend/src/auth/decorators/public.decorator.ts`) to opt
+out. Role/permission enforcement itself is a later milestone (see `Specifications/PRD.docx`).

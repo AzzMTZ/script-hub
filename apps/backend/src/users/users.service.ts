@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../generated/prisma/client';
+import { AuthProvider, User } from '../generated/prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 import type { CreateUserRequest } from '@script-hub/types';
 
@@ -11,6 +11,15 @@ export class UsersService {
         return this.prisma.user.findUnique({
             where: {
                 id,
+            },
+        });
+    }
+
+    findByAuthProvider(authProvider: AuthProvider, authProviderId: string): Promise<User | null> {
+        return this.prisma.user.findFirst({
+            where: {
+                authProvider,
+                authProviderId,
             },
         });
     }

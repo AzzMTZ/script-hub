@@ -43,6 +43,8 @@ model User {
   scripts     Script[]     @relation("ScriptCreator")
   configItems ConfigItem[] @relation("ConfigItemCreator")
   runs        Run[]        @relation("RunExecutor")
+
+  @@unique([authProvider, authProviderId])
 }
 
 model Script {

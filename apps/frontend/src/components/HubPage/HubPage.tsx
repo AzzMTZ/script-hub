@@ -6,6 +6,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Link as RouterLink, Outlet, useLocation } from 'react-router-dom';
 import darkLogo from '../../assets/dark_logo.svg';
 import lightLogo from '../../assets/light_logo.svg';
+import { AuthContext } from '../../contexts/AuthContext';
 import { ColorModeContext } from '../../contexts/ColorModeContext';
 import {
     AddFab,
@@ -27,6 +28,7 @@ import { tabs } from './HubPage.consts';
 const HubPage = () => {
     const { pathname } = useLocation();
     const { mode, toggleColorMode } = useContext(ColorModeContext);
+    const { user, signOut } = useContext(AuthContext);
     const logo = mode === 'dark' ? darkLogo : lightLogo;
     const activeTabIndex = tabs.findIndex((tab) => pathname.startsWith(tab.path));
     const activeTabKey = activeTabIndex === -1 ? 'scripts' : tabs[activeTabIndex].key;
@@ -41,9 +43,9 @@ const HubPage = () => {
                     </BrandStack>
                     <UserStack>
                         <Typography variant="body2" color="text.secondary">
-                            Hello, John Doe!
+                            Hello, {user?.name ?? 'there'}!
                         </Typography>
-                        <Button variant="outlined" size="small">
+                        <Button variant="outlined" size="small" onClick={signOut}>
                             Sign Out
                         </Button>
                     </UserStack>
