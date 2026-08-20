@@ -38,6 +38,8 @@ export const BrandLogo = styled('img')({
     paddingBlock: 10,
     width: 'auto',
     display: 'block',
+    cursor: 'pointer',
+    userSelect: 'none',
 });
 
 export const UserStack = styled(Stack)(({ theme }) => ({

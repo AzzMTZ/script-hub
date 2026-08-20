@@ -23,10 +23,12 @@ import {
 } from './HubPage.styles';
 import { tabMeta } from './HubPage.consts';
 import { tabs } from './HubPage.consts';
+import { useRocketEasterEgg } from './RocketEasterEgg/RocketEasterEgg';
 
 const HubPage = () => {
     const { pathname } = useLocation();
     const { mode, toggleColorMode } = useContext(ColorModeContext);
+    const { registerClick, rocket } = useRocketEasterEgg();
     const logo = mode === 'dark' ? darkLogo : lightLogo;
     const activeTabIndex = tabs.findIndex((tab) => pathname.startsWith(tab.path));
     const activeTabKey = activeTabIndex === -1 ? 'scripts' : tabs[activeTabIndex].key;
@@ -37,7 +39,7 @@ const HubPage = () => {
             <StyledAppBar position="sticky" color="transparent" elevation={0}>
                 <HeaderToolbar>
                     <BrandStack>
-                        <BrandLogo src={logo} alt="ScriptHub" />
+                        <BrandLogo src={logo} alt="ScriptHub" onClick={registerClick} />
                     </BrandStack>
                     <UserStack>
                         <Typography variant="body2" color="text.secondary">
@@ -78,6 +80,8 @@ const HubPage = () => {
             >
                 {mode === 'light' ? <Brightness4Icon /> : <Brightness7Icon />}
             </ColorModeFab>
+
+            {rocket}
         </PageRoot>
     );
 };
