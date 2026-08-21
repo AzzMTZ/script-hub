@@ -4,13 +4,13 @@ const palettesByMode: Record<PaletteMode, Record<string, unknown>> = {
     light: {
         mode: 'light',
         primary: {
-            main: '#4f46e5',
-            dark: '#4338ca',
-            light: '#818cf8',
+            main: '#dc2626',
+            dark: '#b91c1c',
+            light: '#f87171',
             contrastText: '#ffffff',
         },
         secondary: {
-            main: '#0ea5e9',
+            main: '#ef4444',
         },
         background: {
             default: '#f6f7fb',
@@ -25,13 +25,13 @@ const palettesByMode: Record<PaletteMode, Record<string, unknown>> = {
     dark: {
         mode: 'dark',
         primary: {
-            main: '#818cf8',
-            dark: '#6366f1',
-            light: '#a5b4fc',
+            main: '#f87171',
+            dark: '#ef4444',
+            light: '#fca5a5',
             contrastText: '#1e1b2e',
         },
         secondary: {
-            main: '#38bdf8',
+            main: '#f87171',
         },
         background: {
             default: '#111119',
@@ -116,7 +116,7 @@ export const getTheme = (mode: PaletteMode) => {
                 styleOverrides: {
                     root: {
                         boxShadow: isLight
-                            ? '0 8px 24px rgba(79, 70, 229, 0.35)'
+                            ? '0 8px 24px rgba(220, 38, 38, 0.35)'
                             : '0 8px 24px rgba(0, 0, 0, 0.5)',
                     },
                 },
